@@ -1,0 +1,43 @@
+{
+  "name": "ee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "type": "module"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.3.6",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.3.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.3.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "cannon-es": "^0.18.0",
+    "dynamic-import-polyfill": "^0.1.1",
+    "gsap": "^3.7.1",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.134.0",
+    "three-particle-fire": "0.0.0",
+    "three.interactive": "^1.1.0"
+  }
+}

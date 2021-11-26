@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Weband Christmas</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="/src/assets/favicon-32x32.png "
+    />
+  </head>
+  <body>
+    <div class="loaderbg">
+      <div class="loader"></div>
+      <div class="loading-bar"></div>
+    </div>
+    <style>
+      .loader {
+        display: block;
+        z-index: 999;
+        position: absolute;
+        background-image: url("./assets/gifv2.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100px 100px;
+        height: 100px;
+        width: 100px;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      .loading-bar {
+        position: absolute;
+        top: 60%;
+        left: 46%;
+        width: 10%;
+        height: 4px;
+        opacity: 0.8;
+        background: red;
+        transform: scaleX(0.3);
+        transform-origin: top left;
+        transition: transform 0.5s;
+      }
+
+      .close {
+        cursor: pointer;
+      }
+      .score {
+        display: none;
+        position: absolute;
+        font-size: 28px;
+        align-items: flex-end;
+        right: 0px;
+        color: #1e5f4e;
+        border-radius: 20px;
+        width: 200px;
+        height: 80px;
+        margin: 10px;
+        background-color: white;
+      }
+
+      .score-table {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .of {
+        margin: 10px;
+        font-size: 15px;
+        color: black;
+        opacity: 0.4;
+        font-weight: bold;
+      }
+      .score-active {
+        margin: 0px;
+      }
+      .score-other {
+        margin: 0px;
+      }
+      .score-table::before {
+        content: "Намерени";
+        font-size: 15px;
+        position: absolute;
+        top: -20px;
+        left: 5px;
+        color: black;
+        opacity: 0.4;
+        font-weight: bold;
+      }
+      html,
+      body {
+        background-color: black;
+      }
+      img {
+        display: none;
+      }
+    </style>
+    <div class="legend">
+      <div id="instructions">
+        <div class="window">
+          <div class="window-left">
+            <h1>
+              Дигитална Коледа <br />
+              2021 година
+            </h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+              recusandae, nulla officia voluptates quos ipsum consequuntur amet
+              beatae corrupti pariatur at dicta minima suscipit unde, aut quasi
+              eius placeat cumque doloremque reprehenderit. Accusantium dolorum
+              obcaecati exercitationem nobis tempora unde velit iste. Delectus
+              itaque, commodi placeat optio sed voluptatibus ipsa eum!
+            </p>
+            <div class="boxes">
+              <div class="walkHouse">
+                <div class="numAndImg">
+                  <div class="number">1</div>
+                  <img src="./assets/explore.png" alt="" />
+                </div>
+              </div>
+              <div class="FindGifts">
+                <div class="numAndImg">
+                  <div class="number">2</div>
+                  <img src="./assets/presents.png" alt="" />
+                </div>
+              </div>
+              <div class="ShareSocial">
+                <div class="numAndImg">
+                  <div class="number">3</div>
+                  <img src="./assets/share-icon.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="play">Започни играта</div>
+          </div>
+          <div class="window-right">
+            <h2>Начин на управление</h2>
+            <p>движение</p>
+            <div class="controls">
+              <div class="w">W</div>
+              <div class="asd"><span>A</span><span>S</span><span>D</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="esc">Esc</div>
+      <div class="score">
+        <div class="img">
+          <img src="./assets/tree.png" alt="" />
+        </div>
+        <div class="score-table">
+          <h2 class="score-active">0</h2>
+          <h2 class="of">от</h2>
+          <h2 class="score-other">5</h2>
+        </div>
+      </div>
+      <div class="buybest-text">
+        <h2>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt
+          accusamus similique libero dolorem quo modi.
+        </h2>
+      </div>
+      <div class="cashExp-text">
+        <h2>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt
+          accusamus similique libero dolorem quo modi.
+        </h2>
+      </div>
+      <div class="dalsiat-text">
+        <h2>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+          perspiciatis sint, earum dolorum tempore ducimus alias eum quidem
+          ullam quasi! Molestiae doloribus consequuntur sapiente beatae officia
+          distinctio dignissimos. Itaque amet, alias voluptate assumenda minima
+          eaque eveniet praesentium maxime natus maiores illo. Et iste
+          asperiores ea maiores, enim illo vitae commodi porro deserunt. Iste
+          qui at modi, ab iusto pariatur ipsum repudiandae libero rerum animi
+          repellat eum praesentium. Provident animi officiis mollitia! Earum eos
+          doloribus et consequuntur enim necessitatibus numquam minus fugiat
+          dolores quibusdam, adipisci, architecto deserunt saepe, a similique
+          provident eius? Accusamus recusandae consequatur enim perferendis
+          quisquam unde, nulla id.
+        </h2>
+      </div>
+      <div class="weband-text">
+        <div class="img-wrapper">
+          <img src="./assets/stockphoto.png" alt="" />
+          <button class="close">X</button>
+        </div>
+        <div class="gift-text-wrapper">
+          <h2>Пожелание от “клиент Х”</h2>
+          <p>
+            Тук имате възможност да предоставите персонализирано пожелание под
+            формата на текст, снимки или промоционално предложение, промо код
+            или друго, което всеки посетител ще може да прочете! <br />
+            Оставяме на Вас възможността да бъдете креативни и полезни!
+          </p>
+          <p>
+            Възможност за линк с препратка към вашия фирмен сайт
+            <a href="https://example.com/" target="_blank">тук.</a>
+          </p>
+        </div>
+      </div>
+      <div class="gotoweb">
+        <div class="gotoweb-wrapper">
+          <img src="./assets/yourlogo.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="www.example.com" target="_blank"
+            >Продължи</a
+          >
+          <button class="close">X</button>
+        </div>
+      </div>
+      <div class="scene"></div>
+      <div class="cursor"></div>
+    </div>
+  </body>
+</html>

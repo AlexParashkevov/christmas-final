@@ -1,0 +1,415 @@
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+#instructions {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+  text-align: center;
+}
+.window {
+  display: flex;
+  position: relative;
+  width: 70%;
+  height: 70%;
+}
+.window-left {
+  padding: 40px;
+  width: 70%;
+  border-radius: 50px 0px 0px 50px;
+  background-image: url("/src/assets/christmast-bg.png");
+  background-size: cover;
+  h1 {
+    text-align: left;
+    font-size: 6vh;
+    margin-left: 100px;
+    color: #f0cd83;
+  }
+  p {
+    font-size: 2vh;
+    text-align: left;
+  }
+}
+.play {
+  background-color: #226d5d;
+  border: 2px solid #f0cd83;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  color: #f0cd83;
+  font-size: 25px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.boxes {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.walkHouse {
+  width: 13vw;
+  height: 15vh;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0cd83;
+  border: 2px solid white;
+  border-radius: 10px;
+  img {
+    display: block !important;
+    height: 10vh;
+    margin-left: 1vw;
+  }
+  &::after {
+    content: "Разходи се из къщата";
+    position: absolute;
+    white-space: nowrap;
+    color: #226d5d;
+    font-size: 1.5vh;
+
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.FindGifts {
+  width: 13vw;
+  height: 15vh;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0cd83;
+  border: 2px solid white;
+  border-radius: 10px;
+  img {
+    display: block !important;
+
+    height: 10vh;
+    margin-left: 1vw;
+  }
+  &::after {
+    content: "Намери загубената окраса";
+    position: absolute;
+    white-space: nowrap;
+    color: #226d5d;
+    font-size: 1.5vh;
+
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.ShareSocial {
+  width: 13vw;
+  height: 15vh;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0cd83;
+  border: 2px solid white;
+  border-radius: 10px;
+  img {
+    display: block !important;
+
+    height: 10vh;
+    margin-left: 1vw;
+  }
+  &::after {
+    content: "Сподели във Facebook";
+    position: absolute;
+    white-space: nowrap;
+    color: #226d5d;
+    font-size: 1.5vh;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.numAndImg {
+  display: flex;
+  .number {
+    position: relative;
+    margin: 10px;
+    font-size: 65px;
+    z-index: 1;
+    color: #226d5d;
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+
+      left: 3px;
+      height: 50px;
+      width: 50px;
+      background-color: #c69835;
+      border-radius: 50%;
+    }
+  }
+}
+.window-right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+  background-color: white;
+  border-radius: 0px 50px 50px 0px;
+  h2 {
+    font-size: 30px;
+    color: #1e5f4e;
+  }
+  p {
+    color: #000000;
+  }
+}
+.cursor {
+  display: none;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor:before,
+.cursor:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #d00;
+}
+
+.cursor:before {
+  left: 50%;
+  width: 5%;
+  height: 100%;
+}
+
+.cursor:after {
+  top: 50%;
+  height: 5%;
+  width: 100%;
+}
+.buybest-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(41, 72, 157, 0.8);
+  backdrop-filter: blur(5px);
+  color: #f6e002;
+  border-radius: 20px;
+  top: -100vh;
+  padding: 80px;
+  transition: 1s ease-in-out;
+}
+.cashExp-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(206, 35, 39, 0.8);
+  backdrop-filter: blur(5px);
+  color: #040404;
+  border-radius: 20px;
+  top: -100vh;
+  padding: 80px;
+  transition: 1s ease-in-out;
+}
+.dalsiat-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 147, 67, 0.8);
+  backdrop-filter: blur(5px);
+  color: #ec2528;
+  border-radius: 20px;
+  top: -100vh;
+  padding: 80px;
+  transition: 1s ease-in-out;
+}
+
+.controls {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 20px;
+  color: #1e5f4e;
+}
+
+.w {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: solid 2px #1e5f4e;
+  width: 50px;
+  height: 50px;
+}
+.asd > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: solid 2px #1e5f4e;
+  width: 50px;
+  height: 50px;
+  margin: 0px 5px 0px 5px;
+}
+.asd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row !important;
+}
+.w {
+  margin-bottom: 10px;
+}
+.esc {
+  display: none;
+  position: absolute;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 150px;
+  height: 80px;
+  margin: 10px;
+  background-color: white;
+  &::after {
+    content: "Опции";
+    position: absolute;
+    top: 5px;
+    font-size: 15px;
+    opacity: 0.3;
+  }
+}
+
+.legend {
+  display: none;
+}
+.gotoweb {
+  position: absolute;
+  left: 50%;
+  height: 40vh;
+  width: 40vw;
+  transform: translate(-50%, -50%);
+  background-image: url("/src/assets/christmast-bg.png");
+  background-size: 100% 105%;
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+  border-radius: 20px;
+  top: -100vh;
+  padding: 80px;
+  transition: 1s ease-in-out;
+  img {
+    width: 20%;
+    display: block !important;
+  }
+  h2 {
+    text-align: center;
+    font-size: 4vh;
+    color: #f0cd83;
+  }
+  .gotoweb-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .continue {
+    background-color: #226d5d;
+    border: 2px solid #f0cd83;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 300px;
+    height: 60px;
+    color: #f0cd83;
+    font-size: 25px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+.close {
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  border-radius: 50%;
+  border: none;
+  height: 50px;
+  width: 50px;
+  font-size: 27px;
+  background-color: white;
+  color: #226d5d;
+}
+.img {
+  width: 45%;
+}
+.img {
+  position: relative;
+  img {
+    display: block !important;
+  }
+}
+.gift-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-image: url("/src/assets/christmast-bg.png");
+  background-size: cover;
+  background-size: 120%;
+  background-position-x: -70px;
+  border-radius: 0px 0px 50px 50px;
+  padding: 20px 130px;
+  h2 {
+    font-size: 6vh;
+    color: #f0cd83;
+  }
+  p {
+    font-size: 2vh;
+  }
+}
+.weband-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  border-radius: 20px;
+  top: -100vh;
+  transition: 1s ease-in-out;
+}
+.weband-text > a {
+  font-size: 30px;
+  color: green;
+}
+.img-wrapper {
+  img {
+    width: 100%;
+    display: block !important;
+  }
+}
