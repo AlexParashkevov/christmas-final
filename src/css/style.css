@@ -51,23 +51,23 @@ body {
 }
 
 .window-left h1 {
-  text-align: left;
+  text-align: center;
   font-size: 6vh;
-  margin-left: 100px;
   color: #f0cd83;
 }
 
 .window-left p {
   font-size: 2vh;
-  text-align: left;
+  padding: 0px 50px;
+  text-align: center;
 }
 
 .play {
   background-color: #226d5d;
   border: 2px solid #f0cd83;
   border-radius: 10px;
-  width: 300px;
-  height: 60px;
+  width: 25vw;
+  height: 8vh;
   color: #f0cd83;
   font-size: 25px;
   margin: 0px auto;
@@ -87,15 +87,15 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   margin-bottom: 30px;
 }
 
 .walkHouse {
-  width: 13vw;
-  height: 15vh;
+  width: 14vw;
+  height: 17vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,20 +118,20 @@ body {
 }
 
 .walkHouse::after {
-  content: "Разходи се из къщата";
+  content: "Разходи се";
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.5vh;
-  bottom: 10px;
+  font-size: 1.8vh;
+  bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
 .FindGifts {
-  width: 13vw;
-  height: 15vh;
+  width: 14vw;
+  height: 17vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -154,20 +154,20 @@ body {
 }
 
 .FindGifts::after {
-  content: "Намери загубената окраса";
+  content: "Намери изгубената yкраса";
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.5vh;
-  bottom: 10px;
+  font-size: 1.8vh;
+  bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
 .ShareSocial {
-  width: 13vw;
-  height: 15vh;
+  width: 14vw;
+  height: 17vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -194,8 +194,8 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.5vh;
-  bottom: 10px;
+  font-size: 1.8vh;
+  bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -245,12 +245,17 @@ body {
 }
 
 .window-right h2 {
-  font-size: 30px;
+  font-size: 5vh;
+  margin: 3vh 0px;
   color: #1e5f4e;
 }
 
 .window-right p {
-  color: #000000;
+  color: #1e5f4e;
+}
+
+.window-right img {
+  display: block;
 }
 
 .cursor {
@@ -333,7 +338,7 @@ body {
 }
 
 .controls {
-  font-size: 25px;
+  font-size: 3vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -346,65 +351,24 @@ body {
           align-items: center;
   right: 20px;
   color: #1e5f4e;
+  margin-bottom: 20px;
 }
 
-.w {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 10px;
-  border: solid 2px #1e5f4e;
-  width: 50px;
-  height: 50px;
+.controls img {
+  height: 15vh;
 }
 
-.asd > span {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 10px;
-  border: solid 2px #1e5f4e;
-  width: 50px;
-  height: 50px;
-  margin: 0px 5px 0px 5px;
-}
-
-.asd {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: row !important;
-          flex-direction: row !important;
-}
-
-.w {
-  margin-bottom: 10px;
+.line {
+  width: 100%;
+  background-color: black;
+  height: 2px;
+  opacity: 0.3;
 }
 
 .esc {
   display: none;
   position: absolute;
-  color: black;
+  color: #1e5f4e;
   font-size: 30px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -422,6 +386,7 @@ body {
 .esc::after {
   content: "Опции";
   position: absolute;
+  color: black;
   top: 5px;
   font-size: 15px;
   opacity: 0.3;
@@ -497,10 +462,14 @@ body {
   cursor: pointer;
 }
 
+.mouse img {
+  height: 15vh;
+}
+
 .close {
   position: absolute;
-  right: -40px;
-  top: -40px;
+  right: 35px;
+  top: 35px;
   border-radius: 50%;
   border: none;
   height: 50px;
@@ -544,14 +513,105 @@ body {
 
 .gift-text-wrapper h2 {
   font-size: 6vh;
+  margin: 0px;
+  margin-bottom: 20px;
   color: #f0cd83;
 }
 
 .gift-text-wrapper p {
   font-size: 2vh;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.gift-text-wrapper a {
+  text-decoration: none;
+  background-color: #226d5d;
+  border: 2px solid #f0cd83;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  color: #f0cd83;
+  font-size: 25px;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.gift-text-wrapper2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  background-image: url("/src/assets/christmast-bg.png");
+  background-size: cover;
+  background-size: 120%;
+  background-position-x: -70px;
+  border-radius: 50px;
+  padding: 20px 130px;
+}
+
+.gift-text-wrapper2 h2 {
+  font-size: 6vh;
+  color: #f0cd83;
+}
+
+.gift-text-wrapper2 p {
+  font-size: 2vh;
+}
+
+.gift-text-wrapper2 a {
+  text-decoration: none;
+  background-color: #226d5d;
+  border: 2px solid #f0cd83;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  color: #f0cd83;
+  font-size: 25px;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
 }
 
 .weband-text {
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #ffffff;
+  border-radius: 20px;
+  top: -100vh;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+.found-text {
+  z-index: 10;
   position: absolute;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -571,5 +631,43 @@ body {
 .img-wrapper img {
   width: 100%;
   display: block !important;
+}
+
+.wrapper {
+  top: -100vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+.player-time {
+  margin: 10px;
+  z-index: 0;
+  display: none;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  font-size: 28px;
+  right: 0px;
+  color: #1e5f4e;
+  border-radius: 20px;
+  width: 200px;
+  height: 80px;
+  -webkit-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
+  background-color: white;
+  padding-left: 20px;
+}
+
+.player-time h2 {
+  font-size: 25px;
+  margin: 0px;
 }
 /*# sourceMappingURL=style.css.map */

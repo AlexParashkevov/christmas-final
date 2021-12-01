@@ -38,6 +38,7 @@
     "stats.js": "^0.17.0",
     "three": "^0.134.0",
     "three-particle-fire": "0.0.0",
-    "three.interactive": "^1.1.0"
+    "three.interactive": "^1.1.0",
+    "three.proton.js": "^0.2.3"
   }
 }

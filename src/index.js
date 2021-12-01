@@ -6,12 +6,18 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { PointerLockControlsCannon } from "cannon-es/examples/js/PointerLockControlsCannon.js";
+import Proton, { ScreenZone } from "three.proton.js";
+import { TextureLoader } from "three/src/loaders/TextureLoader.js";
+
 import * as Stats from "stats.js";
-import { TextureLoader } from "three";
+// console.log(Proton);
 
 let camera, scene, renderer, stats;
 let material;
 let onGift = false;
+let snow = true;
+let timeStarted = false;
+
 // cannon.js variables
 let world;
 let controls;
@@ -19,6 +25,7 @@ const timeStep = 1 / 60;
 let lastCallTime = performance.now();
 let sphereShape;
 let sphereBody;
+let foundAll = false;
 let physicsMaterial;
 let collideWall = false;
 let controlsLive = false;
@@ -29,6 +36,28 @@ const balls = [];
 const ballMeshes = [];
 const boxes = [];
 const boxMeshes = [];
+const decorPositions = [
+  [-32, 3, -12],
+  [0.056, 4.88, 1.439],
+  [35.551, 2.162, 15.363],
+  [-0.004, 2.162, -3.88],
+  [-1.84, 0.653, -1.556],
+  [-44.664, 1.508, 23.858],
+  [-16.016, 1.983, 3.189],
+  [-13.36, 2.562, -25.238],
+  [31.205, 2.562, -14.191],
+  [5.398, 1.625, -0.319],
+  [3.236, 0.719, 3.602],
+  [-3.04, 1.625, 41.653],
+  [-23.071, 1.625, 26.044],
+  [20.481, 1.625, 21.78],
+  [-21.94, 1.625, 5.795],
+  [11.231, 1.625, -14.033],
+  [-6.611, 1.625, 9.724],
+  [-19.718, 1.625, -14.132],
+  [-24.506, 1.625, 44.237],
+  [37.185, 1.625, 18.45],
+];
 const instructions = document.getElementById("instructions");
 const play = document.querySelector(".play");
 world = new CANNON.World();
@@ -137,7 +166,7 @@ scene.add(light2);
 // light3.position.set(0, 3, 8);
 // scene.add(light3);
 // const sphereSize = 1;
-// const pointLightHelper = new THREE.PointLightHelper(light3, sphereSize);
+// const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
 // scene.add(pointLightHelper);
 
 // Generic material
@@ -192,6 +221,9 @@ let decor3found = false;
 let decor4found = false;
 let decor5 = null;
 let decor5found = false;
+let wbspin;
+let dsspin;
+let bbspin;
 // Load a glTF resource
 loader.load(
   // resource URL
@@ -298,7 +330,7 @@ loader.load(
           });
           outlineMesh6 = new THREE.Mesh(webandGift2.geometry, outlineMaterial6);
           outlineMesh6.position.copy(webandGift2.position);
-          console.log(outlineMesh6.position);
+          // console.log(outlineMesh6.position);
           outlineMesh6.rotation.copy(webandGift2.rotation);
           outlineMesh6.scale.multiplyScalar(1.02);
           scene.add(outlineMesh6);
@@ -348,16 +380,74 @@ loader.load(
           doorRight = child;
         } else if (child.name === "decor1") {
           decor1 = child;
-          const x = (Math.random() - 3.0) * 10;
-          const y = (Math.random() - 0.5) * 10;
-          decor1.position.set(x, 3, y);
+          let theRandomNumber =
+            Math.floor(Math.random() * decorPositions.length) + 0;
+          // console.log(theRandomNumber);
+          const pos = new THREE.Vector3().fromArray(
+            decorPositions.splice(theRandomNumber, 1)[0]
+          );
+          decor1.position.copy(pos);
+          // console.log(pos);
+          // console.log(decor1.position);
           gifts.push(decor1);
         } else if (child.name === "decor2") {
           decor2 = child;
-          const x = (Math.random() + 3.0) * 10;
-          const y = (Math.random() + 0.5) * 30;
-          decor2.position.set(x, 1, y);
+          let theRandomNumber =
+            Math.floor(Math.random() * decorPositions.length) + 0;
+          // console.log(theRandomNumber);
+
+          const pos = new THREE.Vector3().fromArray(
+            decorPositions.splice(theRandomNumber, 1)[0]
+          );
+          // console.log(pos);
+
+          decor2.position.copy(pos);
           gifts.push(decor2);
+        } else if (child.name === "decor3") {
+          decor3 = child;
+          let theRandomNumber =
+            Math.floor(Math.random() * decorPositions.length) + 0;
+          // console.log(theRandomNumber);
+
+          const pos = new THREE.Vector3().fromArray(
+            decorPositions.splice(theRandomNumber, 1)[0]
+          );
+          // console.log(pos);
+
+          decor3.position.copy(pos);
+          gifts.push(decor3);
+        } else if (child.name === "decor4") {
+          decor4 = child;
+          let theRandomNumber =
+            Math.floor(Math.random() * decorPositions.length) + 0;
+          // console.log(theRandomNumber);
+
+          const pos = new THREE.Vector3().fromArray(
+            decorPositions.splice(theRandomNumber, 1)[0]
+          );
+          // console.log(pos);
+
+          decor4.position.copy(pos);
+          gifts.push(decor4);
+        } else if (child.name === "decor5") {
+          decor5 = child;
+          let theRandomNumber =
+            Math.floor(Math.random() * decorPositions.length) + 0;
+          // console.log(theRandomNumber);
+
+          const pos = new THREE.Vector3().fromArray(
+            decorPositions.splice(theRandomNumber, 1)[0]
+          );
+          // console.log(pos);
+
+          decor5.position.copy(pos);
+          gifts.push(decor5);
+        } else if (child.name === "weband-logo") {
+          wbspin = child;
+        } else if (child.name === "dalsiat-logo") {
+          dsspin = child;
+        } else if (child.name === "buybest-logo") {
+          bbspin = child;
         }
       }
     });
@@ -367,10 +457,16 @@ loader.load(
 
     document.querySelector(".loaderbg").style.display = "none";
     document.querySelector(".legend").style.display = "block";
+    if (screen.width < 1024) {
+      // console.log("no load");
+      document.querySelector(".legend").style.display = "none";
+
+      document.querySelector(".mobile").style.display = "block";
+    }
   },
   // called while loading is progressing
   function (xhr) {
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   }
   // called when loading has errors
 );
@@ -396,6 +492,8 @@ function initPointerLock() {
     controls.lock();
     document.querySelector(".cursor").style.display = "block";
     document.querySelector(".esc").style.display = "flex";
+    document.querySelector(".player-time").style.display = "flex";
+
     document.querySelector(".score").style.display = "flex";
 
     if (!fullscreenElement) {
@@ -426,6 +524,7 @@ function initPointerLock() {
       document.querySelector(".weband-text").style.top = "-100vh";
       document.querySelector(".gotoweb").style.top = "-100vh";
       document.querySelector(".esc").style.display = "none";
+      document.querySelector(".player-time").style.display = "none";
       document.querySelector(".score").style.display = "none";
       // if (document.exitFullscreen) {
       //   document.exitFullscreen();
@@ -473,7 +572,7 @@ var onMouseDown2 = function (event) {
   document.querySelector(".cursor").style.display = "none";
 };
 var onMouseDown = function (event) {
-  console.log("click");
+  // console.log("click");
   document.querySelector(".buybest-text").style.top = "-100vh";
   document.querySelector(".dalsiat-text").style.top = "-100vh";
   document.querySelector(".weband-text").style.top = "-100vh";
@@ -499,14 +598,24 @@ var onMouseDown4 = function (e) {
     controls.enabled = false;
     instructions.style.display = "none";
     // controlsLive = false;
-    console.log("clicked");
+    // console.log("clicked");
+
     document.querySelector(".buybest-text").style.top = "-100vh";
     document.querySelector(".cashExp-text").style.top = "-100vh";
     document.querySelector(".dalsiat-text").style.top = "-100%";
     document.querySelector(".weband-text").style.top = "50%";
+    document.querySelector(".wrapper").style.top = "0vh";
     document.querySelector(".cursor").style.display = "none";
+    // if (document.exitFullscreen) {
+    //   document.exitFullscreen();
+    // } else if (document.webkitExitFullscreen) {
+    //   document.webkitExitFullscreen();
+    // }
+    menuClosed = false;
+    controlsLive = false;
   }
 };
+
 // document.querySelector(".close2").addEventListener("click", () => {
 //   console.log("closed");
 //   btnClose = true;
@@ -525,7 +634,8 @@ var onMouseDown5 = function (e) {
     controls.enabled = false;
     instructions.style.display = "none";
     e.preventDefault();
-    console.log("fire");
+
+    // console.log("fire");
     // window.open("https://www.weband.bg/");
     document.querySelector(".gotoweb").style.top = "50%";
     document.querySelector(".cursor").style.display = "none";
@@ -534,12 +644,16 @@ var onMouseDown5 = function (e) {
 var onMouseDown6 = function (e) {
   if (menuClosed) {
     e.preventDefault();
-    console.log("clicked on decor");
+    // console.log("clicked on decor");
     if (!decor1found) {
       score += 1;
       onGift = true;
-      decor1.position.set(-8, 3, 3);
-      console.log(decor1.position);
+      decor1.position.set(-9.006, 2.053, 2.798);
+      decor1.scale.set(0.5, 0.5, 0.5);
+      // console.log(decor1.position);
+      if (!timeStarted) {
+        timeStarted = true;
+      }
       decor1found = true;
     }
   }
@@ -547,42 +661,207 @@ var onMouseDown6 = function (e) {
 var onMouseDown7 = function (e) {
   if (menuClosed) {
     e.preventDefault();
-    console.log("clicked on decor2");
+    // console.log("clicked on decor2");
     if (!decor2found) {
       score += 1;
       onGift = true;
-      decor2.position.set(-8, 3, 3);
-      console.log(decor2.position);
+      decor2.position.set(-8.93, 2.228, 4.89);
+      decor2.scale.set(0.5, 0.5, 0.5);
+      if (!timeStarted) {
+        timeStarted = true;
+      }
+      // console.log(decor2.position);
       decor2found = true;
     }
   }
 };
-let elementsArr = document.querySelectorAll(".close");
-elementsArr.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    console.log("closed");
-    btnClose = true;
-    controls.lock();
-    controlsLive = true;
-    document.querySelector(".cursor").style.display = "block";
-    document.querySelector(".gotoweb").style.top = "-100vh";
-    document.querySelector(".weband-text").style.top = "-100vh";
-    controls.enabled = true;
-    mousedown = false;
-    if (!fullscreenElement) {
-      if (canvas.requestFullscreen) {
-        canvas.requestFullscreen();
-      } else if (canvas.webkitRequestFullscreen) {
-        canvas.webkitRequestFullscreen();
+var onMouseDown8 = function (e) {
+  if (menuClosed) {
+    e.preventDefault();
+    // console.log("clicked on decor3");
+    if (!decor3found) {
+      score += 1;
+      onGift = true;
+      decor3.position.set(-8.159, 1.521, 3.463);
+      decor3.rotation.y = Math.PI * 1;
+      decor3.scale.set(0.5, 0.5, 0.5);
+      if (!timeStarted) {
+        timeStarted = true;
       }
+      // console.log(decor3.position);
+      decor3found = true;
     }
-  });
+  }
+};
+var onMouseDown9 = function (e) {
+  if (menuClosed) {
+    e.preventDefault();
+    // console.log("clicked on decor4");
+    if (!decor4found) {
+      score += 1;
+      onGift = true;
+      decor4.position.set(-8.531, 3.206, 3.574);
+      decor4.rotation.y = Math.PI * 1;
+
+      decor4.scale.set(0.5, 0.5, 0.5);
+      if (!timeStarted) {
+        timeStarted = true;
+      }
+      // console.log(decor4.position);
+      decor4found = true;
+    }
+  }
+};
+var onMouseDown10 = function (e) {
+  if (menuClosed) {
+    e.preventDefault();
+    // console.log("clicked on decor5");
+    if (!decor5found) {
+      score += 1;
+      onGift = true;
+      decor5.position.set(-8.835, 4.212, 4.129);
+      decor5.scale.set(0.5, 0.5, 0.5);
+      decor5.rotation.y = Math.PI * 0.5;
+      if (!timeStarted) {
+        timeStarted = true;
+      }
+      // console.log(decor5.position);
+      decor5found = true;
+    }
+  }
+};
+var onMouseDownClose = function (event) {
+  // if (menuClosed) {
+  event.preventDefault();
+  // console.log("closed");
+  btnClose = true;
+  controls.lock();
+  controlsLive = true;
+  onGift = false;
+  document.querySelector(".cursor").style.display = "block";
+  document.querySelector(".gotoweb").style.top = "-100vh";
+  document.querySelector(".weband-text").style.top = "-100vh";
+  document.querySelector(".wrapper").style.top = "-100vh";
+  document.querySelector(".found-text").style.top = "-100vh";
+  controls.enabled = true;
+  mousedown = false;
+  if (!fullscreenElement) {
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+    } else if (canvas.webkitRequestFullscreen) {
+      canvas.webkitRequestFullscreen();
+    }
+  }
+  // }
+};
+let elementsArr = document.querySelectorAll(".close");
+let wrapper = document.querySelector(".wrapper");
+let itemClose = null;
+elementsArr.forEach((item) => {
+  itemClose = item;
+  itemClose.addEventListener("click", onMouseDownClose, false);
 });
+wrapper.addEventListener("click", (e) => {
+  e.preventDefault();
+  // console.log("clicked on wrapper");
+  btnClose = true;
+  controls.lock();
+  controlsLive = true;
+  document.querySelector(".cursor").style.display = "block";
+  document.querySelector(".gotoweb").style.top = "-100vh";
+  document.querySelector(".weband-text").style.top = "-100vh";
+  document.querySelector(".found-text").style.top = "-100vh";
+  controls.enabled = true;
+  mousedown = false;
+  if (!fullscreenElement) {
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+    } else if (canvas.webkitRequestFullscreen) {
+      canvas.webkitRequestFullscreen();
+    }
+  }
+  if (decor1found && decor2found && decor3found && decor4found && decor5found) {
+    foundAll = true;
+    document.querySelector(".wrapper").style.top = "-100vh";
+  }
+});
+let proton;
+let emitter;
+let materialSnow;
+function addProton() {
+  proton = new Proton();
+
+  emitter = new Proton.Emitter();
+  emitter.rate = new Proton.Rate(
+    new Proton.Span(10, 10),
+    new Proton.Span(0.02, 0.05)
+  );
+  emitter.addInitialize(new Proton.Mass(1.5));
+  emitter.addInitialize(new Proton.Radius(new Proton.Span(0.4, 0.4)));
+
+  var position = new Proton.Position();
+  position.addZone(new Proton.BoxZone(10, 10, 10));
+  emitter.addInitialize(position);
+
+  emitter.addInitialize(new Proton.Life(4, 4));
+  emitter.addInitialize(new Proton.Body(createSnow()));
+  emitter.addInitialize(
+    new Proton.Velocity(0, new Proton.Vector3D(0, -1, 0), 90)
+  );
+
+  emitter.addBehaviour(new Proton.RandomDrift(10, 1, 10, 0.05));
+  emitter.addBehaviour(new Proton.Rotate("random", "random"));
+  emitter.addBehaviour(new Proton.Gravity(0.4));
+
+  emitter.p.x = 0;
+  emitter.p.y = 100;
+  emitter.emit();
+
+  proton.addEmitter(emitter);
+  proton.addRender(new Proton.SpriteRender(scene));
+}
+
+function createSnow() {
+  var map = new THREE.TextureLoader().load("./assets/snow.png");
+  materialSnow = new THREE.SpriteMaterial({
+    map: map,
+    transparent: true,
+    opacity: 0.5,
+    color: 0xffffff,
+  });
+  return new THREE.Sprite(materialSnow);
+}
+addProton();
+const clock = new THREE.Clock();
+let previousTime = 0;
 function animate() {
   // stats.begin();
   raycaster.setFromCamera(lock, camera);
   const time = performance.now() / 1000;
   const dt = time - lastCallTime;
+
+  controls.update(dt);
+  if (timeStarted) {
+    const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
+    var minutes = Math.floor(previousTime / 60);
+    let minString = String(minutes);
+    var secondsBefore = (previousTime - minutes * 60).toFixed(2);
+    let seconds = secondsBefore.split(".")[0];
+    let miliseconds = secondsBefore.split(".")[1];
+    if (seconds.length == 1) {
+      seconds = "0" + seconds;
+    }
+    if (minString.length == 1) {
+      minString = "0" + minString;
+    }
+    document.querySelector(".time-sec").innerHTML = seconds;
+    document.querySelector(".player-time").style.width = "350px";
+    document.querySelector(".time-min").innerHTML = minString;
+    document.querySelector(".time-mil").innerHTML = miliseconds;
+  }
+
   if (mixer !== null) {
     mixer.update(dt);
   }
@@ -594,6 +873,11 @@ function animate() {
     for (let i = 0; i < balls.length; i++) {
       ballMeshes[i].position.copy(balls[i].position);
       ballMeshes[i].quaternion.copy(balls[i].quaternion);
+      if (balls.length > 20) {
+        scene.remove(ballMeshes.shift());
+        // balls.shift();
+        world.removeBody(balls.shift());
+      }
     }
 
     // Update box positions
@@ -602,15 +886,38 @@ function animate() {
       boxMeshes[i].quaternion.copy(boxes[i].quaternion);
     }
   }
+  if (decor1found && decor2found && decor3found && decor4found && decor5found) {
+    // console.log("all gifts found");
+    clock.stop();
+    if (menuClosed && !foundAll) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      document.querySelector(".found-text").style.top = "50%";
+      document.querySelector(".wrapper").style.top = "0vh";
+
+      document.querySelector(".cursor").style.display = "none";
+      foundAll = true;
+    }
+  }
   // outlineMesh2.visible = false;
   // outlineMesh3.visible = false;
   // outlineMesh4.visible = false;
-  outlineMesh5.visible = false;
+  // outlineMesh5.visible = false;
   outlineMesh6.visible = false;
   outlineMesh7.visible = false;
   outlineMesh8.visible = false;
   outlineMesh9.visible = false;
+  if (!decor1found) decor1.rotation.y += 0.01;
+  if (!decor2found) decor2.rotation.y += 0.01;
+  if (!decor3found) decor3.rotation.y += 0.01;
+  if (!decor4found) decor4.rotation.y += 0.01;
+  if (!decor5found) decor5.rotation.y += 0.01;
   onGift = false;
+  wbspin.rotation.y += 0.01;
+  dsspin.rotation.y += 0.01;
+  bbspin.rotation.y += 0.01;
   window.removeEventListener("mousedown", onMouseDown);
   window.removeEventListener("mousedown", onMouseDown2);
   window.removeEventListener("mousedown", onMouseDown3);
@@ -618,6 +925,10 @@ function animate() {
   window.removeEventListener("mousedown", onMouseDown5);
   window.removeEventListener("mousedown", onMouseDown6);
   window.removeEventListener("mousedown", onMouseDown7);
+  window.removeEventListener("mousedown", onMouseDown8);
+  window.removeEventListener("mousedown", onMouseDown9);
+  window.removeEventListener("mousedown", onMouseDown10);
+
   const intersects = raycaster.intersectObjects(gifts);
   // if (collideWall) {
   for (let i = 0; i < intersects.length; i++) {
@@ -634,12 +945,10 @@ function animate() {
         outlineMesh4.visible = true;
         onGift = true;
         window.addEventListener("mousedown", onMouseDown3, false);
-      } else if (intersects[i].object.name === "weband-gift") {
-        outlineMesh5.visible = true;
-        onGift = true;
-        window.addEventListener("mousedown", onMouseDown4, false);
       } else if (intersects[i].object.name === "weband-gift2") {
         outlineMesh6.visible = true;
+        // console.log("hello");
+
         onGift = true;
         window.addEventListener("mousedown", onMouseDown4, false);
       } else if (intersects[i].object.name === "wall1") {
@@ -654,40 +963,76 @@ function animate() {
         window.addEventListener("mousedown", onMouseDown5, false);
       } else if (intersects[i].object.name === "decor1") {
         if (!decor1found) {
-          console.log("found gift");
+          // console.log("found gift");
           onGift = true;
 
           window.addEventListener("mousedown", onMouseDown6, false);
         }
       } else if (intersects[i].object.name === "decor2") {
         if (!decor2found) {
-          console.log("found gift");
+          // console.log("found gift");
+
           onGift = true;
 
           window.addEventListener("mousedown", onMouseDown7, false);
         }
+      } else if (intersects[i].object.name === "decor3") {
+        if (!decor3found) {
+          onGift = true;
+
+          window.addEventListener("mousedown", onMouseDown8, false);
+        }
+      } else if (intersects[i].object.name === "decor4") {
+        if (!decor4found) {
+          // console.log("found gift");
+          if (!timeStarted) {
+            timeStarted = true;
+            console.log(clock.start());
+          }
+          onGift = true;
+
+          window.addEventListener("mousedown", onMouseDown9, false);
+        }
+      } else if (intersects[i].object.name === "decor5") {
+        if (!decor5found) {
+          // console.log("found gift");
+
+          onGift = true;
+
+          window.addEventListener("mousedown", onMouseDown10, false);
+        }
       }
     }
   }
-  // }
-  if (!onGift) {
-    document.querySelector(".buybest-text").style.top = "-100vh";
-    document.querySelector(".cashExp-text").style.top = "-100vh";
-    document.querySelector(".dalsiat-text").style.top = "-100vh";
-    document.querySelector(".weband-text").style.top = "-100vh";
-    document.querySelector(".gotoweb").style.top = "-100vh";
-
-    if (controlsLive) {
-      document.querySelector(".cursor").style.display = "block";
-    }
+  if (
+    sphereBody.position.z < 11 &&
+    sphereBody.position.z > -2 &&
+    sphereBody.position.x < 5.4 &&
+    sphereBody.position.x > -12.5
+  ) {
+    snow = false;
+    materialSnow.visible = false;
+  } else {
+    snow = true;
+    materialSnow.visible = true;
   }
   document.querySelector(".score-active").innerHTML = score;
+  // console.log(onGift);
 
-  controls.update(dt);
   requestAnimationFrame(animate);
   // stats.end();
   effectComposer.render();
+  if (snow) {
+    renderSnow();
+  }
 }
+function renderSnow() {
+  proton.update();
+  // renderer.render(scene, camera);
+  // controlCamera();
+  // Proton.Debug.renderInfo(proton, 3);
+}
+
 //
 //
 // PHYSICS
@@ -719,6 +1064,68 @@ function initCannon() {
   WallRightBody.position.y = wallRight.position.y;
   WallRightBody.position.z = wallRight.position.z;
   world.addBody(WallRightBody);
+  //
+  // bounds
+  const wallBound1 = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(150, 20, 0.1),
+    phongMaterial
+  );
+  wallBound1.position.set(0, 0, 45);
+  // scene.add(wallBound1);
+
+  const WallBound1Box = new CANNON.Box(new CANNON.Vec3(75, 10, 0.1));
+  const WallBodyBound1 = new CANNON.Body({ mass: 0 });
+  WallBodyBound1.addShape(WallBound1Box, new CANNON.Vec3());
+  WallBodyBound1.position.x = wallBound1.position.x;
+  WallBodyBound1.position.y = wallBound1.position.y;
+  WallBodyBound1.position.z = wallBound1.position.z;
+  world.addBody(WallBodyBound1);
+  // bounds
+  const wallBound2 = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(150, 20, 0.1),
+    phongMaterial
+  );
+  wallBound2.position.set(0, 0, -30);
+  // scene.add(wallBound2);
+
+  const WallBound2Box = new CANNON.Box(new CANNON.Vec3(75, 10, 0.1));
+  const WallBodyBound2 = new CANNON.Body({ mass: 0 });
+  WallBodyBound2.addShape(WallBound2Box, new CANNON.Vec3());
+  WallBodyBound2.position.x = wallBound2.position.x;
+  WallBodyBound2.position.y = wallBound2.position.y;
+  WallBodyBound2.position.z = wallBound2.position.z;
+  world.addBody(WallBodyBound2);
+  // bounds
+  const wallBound3 = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(0.1, 20, 150),
+    phongMaterial
+  );
+  wallBound3.position.set(-50, 0, 0);
+  // scene.add(wallBound3);
+
+  const WallBound3Box = new CANNON.Box(new CANNON.Vec3(0.1, 10, 75));
+  const WallBodyBound3 = new CANNON.Body({ mass: 0 });
+  WallBodyBound3.addShape(WallBound3Box, new CANNON.Vec3());
+  WallBodyBound3.position.x = wallBound3.position.x;
+  WallBodyBound3.position.y = wallBound3.position.y;
+  WallBodyBound3.position.z = wallBound3.position.z;
+  world.addBody(WallBodyBound3);
+  // bounds
+  const wallBound4 = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(0.1, 20, 150),
+    phongMaterial
+  );
+  wallBound4.position.set(42, 0, 0);
+  // scene.add(wallBound4);
+
+  const WallBound4Box = new CANNON.Box(new CANNON.Vec3(0.1, 10, 75));
+  const WallBodyBound4 = new CANNON.Body({ mass: 0 });
+  WallBodyBound4.addShape(WallBound4Box, new CANNON.Vec3());
+  WallBodyBound4.position.x = wallBound4.position.x;
+  WallBodyBound4.position.y = wallBound4.position.y;
+  WallBodyBound4.position.z = wallBound4.position.z;
+  world.addBody(WallBodyBound4);
+  // bounds
   //
   // railing small
   const Railing2 = new THREE.Mesh(
@@ -755,18 +1162,33 @@ function initCannon() {
   //
   // wall left
   const wallLeft = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(0.1, 10, 10.5),
+    new THREE.BoxBufferGeometry(0.2, 10, 13.8),
     phongMaterial
   );
-  wallLeft.position.set(4, 1, 0);
-
-  const WallShape2 = new CANNON.Box(new CANNON.Vec3(0.1, 10, 10.5));
+  wallLeft.position.set(4.1, 1, 4.5);
+  // scene.add(wallLeft);
+  const WallShape2 = new CANNON.Box(new CANNON.Vec3(0.1, 5, 6.9));
   const WallRightBody2 = new CANNON.Body({ mass: 0 });
   WallRightBody2.addShape(WallShape2, new CANNON.Vec3());
   WallRightBody2.position.x = wallLeft.position.x;
   WallRightBody2.position.y = wallLeft.position.y;
   WallRightBody2.position.z = wallLeft.position.z;
   world.addBody(WallRightBody2);
+  //
+  // wall frontal
+  const wallFrontal = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(6, 5, 0.1),
+    phongMaterial
+  );
+  wallFrontal.position.set(0, 6.5, 12.8);
+  // scene.add(wallFrontal);
+  const WallShapeFrontal = new CANNON.Box(new CANNON.Vec3(3, 2.5, 0.1));
+  const WallBodyFrontal = new CANNON.Body({ mass: 0 });
+  WallBodyFrontal.addShape(WallShapeFrontal, new CANNON.Vec3());
+  WallBodyFrontal.position.x = wallFrontal.position.x;
+  WallBodyFrontal.position.y = wallFrontal.position.y;
+  WallBodyFrontal.position.z = wallFrontal.position.z;
+  world.addBody(WallBodyFrontal);
   //
   // wall left end
   //
@@ -815,12 +1237,12 @@ function initCannon() {
   //
   // second floor
   const SecondFloor = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(5, 0.1, 10),
+    new THREE.BoxBufferGeometry(5, 0.1, 14),
     material
   );
-  SecondFloor.position.set(5, 4, 3);
+  SecondFloor.position.set(2.5, 4, 4.5);
   // scene.add(SecondFloor);
-  const SecondFloorShape = new CANNON.Box(new CANNON.Vec3(5, 0.1, 10));
+  const SecondFloorShape = new CANNON.Box(new CANNON.Vec3(2.5, 0.1, 7));
   const SecondFloorBody = new CANNON.Body({ mass: 0 });
   SecondFloorBody.addShape(SecondFloorShape, new CANNON.Vec3());
   SecondFloorBody.position.x = SecondFloor.position.x;
@@ -829,12 +1251,12 @@ function initCannon() {
   world.addBody(SecondFloorBody);
   // second floor 2
   const SecondFloor2 = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(3, 0.1, 5),
+    new THREE.BoxBufferGeometry(4, 0.1, 10),
     material
   );
-  SecondFloor2.position.set(0, 4, 1.5);
+  SecondFloor2.position.set(-2, 4, 1.5);
   // scene.add(SecondFloor2);
-  const SecondFloorShape2 = new CANNON.Box(new CANNON.Vec3(3, 0.1, 5));
+  const SecondFloorShape2 = new CANNON.Box(new CANNON.Vec3(2, 0.1, 5));
   const SecondFloorBody2 = new CANNON.Body({ mass: 0 });
   SecondFloorBody2.addShape(SecondFloorShape2, new CANNON.Vec3());
   SecondFloorBody2.position.x = SecondFloor2.position.x;
@@ -844,12 +1266,12 @@ function initCannon() {
   //
   // second floor 3
   const SecondFloor3 = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(1, 0.1, 2),
+    new THREE.BoxBufferGeometry(1.5, 0.1, 2.4),
     material
   );
-  SecondFloor3.position.set(-0.5, 4, 7);
+  SecondFloor3.position.set(-0.75, 4, 7.7);
   // scene.add(SecondFloor3);
-  const SecondFloorShape3 = new CANNON.Box(new CANNON.Vec3(1, 0.1, 2));
+  const SecondFloorShape3 = new CANNON.Box(new CANNON.Vec3(0.75, 0.1, 1.2));
   const SecondFloorBody3 = new CANNON.Body({ mass: 0 });
   SecondFloorBody3.addShape(SecondFloorShape3, new CANNON.Vec3());
   SecondFloorBody3.position.x = SecondFloor3.position.x;
@@ -859,12 +1281,12 @@ function initCannon() {
   //
   // second floor 4
   const SecondFloor4 = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(3, 0.1, 0.8),
+    new THREE.BoxBufferGeometry(8, 0.1, 1.0),
     material
   );
-  SecondFloor4.position.set(-0.5, 4, 12.5);
+  SecondFloor4.position.set(-1, 4, 12.0);
   // scene.add(SecondFloor4);
-  const SecondFloorShape4 = new CANNON.Box(new CANNON.Vec3(3, 0.1, 0.8));
+  const SecondFloorShape4 = new CANNON.Box(new CANNON.Vec3(4, 0.1, 0.5));
   const SecondFloorBody4 = new CANNON.Body({ mass: 0 });
   SecondFloorBody4.addShape(SecondFloorShape4, new CANNON.Vec3());
   SecondFloorBody4.position.x = SecondFloor4.position.x;
@@ -874,13 +1296,13 @@ function initCannon() {
   //
   // wall fireplace
   const wallF = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(10, 10, 1),
+    new THREE.BoxBufferGeometry(14, 20, 0.1),
     phongMaterial
   );
-  wallF.position.set(0, 1, -3.5);
+  wallF.position.set(-3, 1, -2.5);
   // scene.add(wallF);
 
-  const WallShape3 = new CANNON.Box(new CANNON.Vec3(10, 10, 1));
+  const WallShape3 = new CANNON.Box(new CANNON.Vec3(7, 10, 0.1));
   const WallRightBody3 = new CANNON.Body({ mass: 0 });
   WallRightBody3.addShape(WallShape3, new CANNON.Vec3());
   WallRightBody3.position.x = wallF.position.x;
@@ -917,6 +1339,38 @@ function initCannon() {
   WallRightBody6.position.y = wall6.position.y;
   WallRightBody6.position.z = wall6.position.z;
   world.addBody(WallRightBody6);
+  // wall second floor
+  const wallsecondFloor = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(0.1, 2, 15),
+    phongMaterial
+  );
+  wallsecondFloor.position.set(2.3, 5, 5.0);
+  // scene.add(wallsecondFloor);
+
+  const wallsecondFloorShape = new CANNON.Box(new CANNON.Vec3(0.1, 1, 7.5));
+  const wallsecondFloorBody = new CANNON.Body({ mass: 0 });
+  wallsecondFloorBody.addShape(wallsecondFloorShape, new CANNON.Vec3());
+  wallsecondFloorBody.position.x = wallsecondFloor.position.x;
+  wallsecondFloorBody.position.y = wallsecondFloor.position.y;
+  wallsecondFloorBody.position.z = wallsecondFloor.position.z;
+  world.addBody(wallsecondFloorBody);
+  // wall second floor q
+  const wallsecondFloorQ = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(0.1, 4, 15),
+    phongMaterial
+  );
+  wallsecondFloorQ.position.set(1.6, 7, 5.0);
+  // scene.add(wallsecondFloorQ);
+
+  const wallsecondFloorShapeQ = new CANNON.Box(new CANNON.Vec3(0.1, 2, 7.5));
+  const wallsecondFloorBodyQ = new CANNON.Body({ mass: 0 });
+  wallsecondFloorBodyQ.addShape(wallsecondFloorShapeQ, new CANNON.Vec3());
+  wallsecondFloorBodyQ.position.x = wallsecondFloorQ.position.x;
+  wallsecondFloorBodyQ.position.y = wallsecondFloorQ.position.y;
+  wallsecondFloorBodyQ.position.z = wallsecondFloorQ.position.z;
+  wallsecondFloorBodyQ.quaternion.setFromEuler(0, 0, Math.PI / 5);
+
+  world.addBody(wallsecondFloorBodyQ);
   // wall 7 quaternion left
   const wall7 = new THREE.Mesh(
     new THREE.BoxBufferGeometry(3, 10, 0.1),
@@ -994,8 +1448,8 @@ function initCannon() {
   );
   // scene.add(wallFa);
 
-  wallFa.position.set(-6, 2, 0);
-  const WallShapeA = new CANNON.Box(new CANNON.Vec3(0.1, 10, 10));
+  wallFa.position.set(-6, 3, 2.5);
+  const WallShapeA = new CANNON.Box(new CANNON.Vec3(0.1, 5, 5));
   const WallRightBodyA = new CANNON.Body({ mass: 0 });
   WallRightBodyA.addShape(WallShapeA, new CANNON.Vec3());
   WallRightBodyA.position.x = wallFa.position.x;
@@ -1007,7 +1461,7 @@ function initCannon() {
   const boxShape = new CANNON.Box(halfExtents);
   const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
   WallRightBodyA.addEventListener("collide", function (e) {
-    console.log("animate");
+    // console.log("animate");
     collideWall = true;
     WallRightBodyA.position.z = -100;
     // Add boxes both in cannon.js and three.js
@@ -1021,56 +1475,41 @@ function initCannon() {
       // color: new THREE.Color(0xff0000),
       side: THREE.FrontSide,
     });
-    // for (let i = 0; i < 20; i++) {
-    //   const boxBody = new CANNON.Body({ mass: 5 });
-    //   boxBody.addShape(boxShape);
-    //   const boxMesh = new THREE.Mesh(sock.geometry, sock.material);
-    //   const boxMesh2 = new THREE.Mesh(cane.geometry, cane.material);
-    //   const boxMesh3 = new THREE.Mesh(treeSmall.geometry, treeSmall.material);
-    //   boxMesh.scale.set(0.8, 0.8, 0.8);
-    //   boxMesh2.scale.set(0.8, 0.8, 0.8);
-    //   boxMesh3.scale.set(0.5, 0.5, 0.5);
-    //   const x = (Math.random() - 3.0) * 5;
-    //   const y = (Math.random() - 0.5) * 1;
-    //   // const z = (Math.random() - 0.5) * 20;
+    for (let i = 0; i < 5; i++) {
+      const boxBody = new CANNON.Body({ mass: 5 });
+      boxBody.addShape(boxShape);
+      const boxMesh = new THREE.Mesh(sock.geometry, sock.material);
+      const boxMesh2 = new THREE.Mesh(cane.geometry, cane.material);
+      const boxMesh3 = new THREE.Mesh(treeSmall.geometry, treeSmall.material);
+      boxMesh.scale.set(0.8, 0.8, 0.8);
+      boxMesh2.scale.set(0.8, 0.8, 0.8);
+      boxMesh3.scale.set(0.5, 0.5, 0.5);
+      const x = (Math.random() - 3.0) * 5;
+      const y = (Math.random() - 0.5) * 1;
+      // const z = (Math.random() - 0.5) * 20;
 
-    //   boxBody.position.set(x, 7, y);
-    //   world.addBody(boxBody);
-    //   scene.add(boxMesh);
-    //   scene.add(boxMesh2);
-    //   scene.add(boxMesh3);
-    //   boxes.push(boxBody);
-    //   boxMeshes.push(boxMesh);
-    //   boxMeshes.push(boxMesh2);
-    //   boxMeshes.push(boxMesh3);
-    // }
+      boxBody.position.set(x, 7, y);
+      world.addBody(boxBody);
+      scene.add(boxMesh);
+      scene.add(boxMesh2);
+      scene.add(boxMesh3);
+      boxes.push(boxBody);
+      boxMeshes.push(boxMesh);
+      boxMeshes.push(boxMesh2);
+      boxMeshes.push(boxMesh3);
+    }
   });
   // animation wall end
   //
   // wall fireplace end
   //
-  // fireplace
-  const wallFire = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(1, 2.8, 1),
-    phongMaterial
-  );
-  wallFire.position.set(0, 1, -10.9);
-  // scene.add(wallFire);
-
-  const WallShape4 = new CANNON.Box(new CANNON.Vec3(1, 2.8, 1));
-  const WallRightBody4 = new CANNON.Body({ mass: 0 });
-  WallRightBody4.addShape(WallShape4, new CANNON.Vec3());
-  WallRightBody4.position.x = wallFire.position.x;
-  WallRightBody4.position.y = wallFire.position.y;
-  WallRightBody4.position.z = wallFire.position.z;
-  // world.addBody(WallRightBody4);
   // tree
   const TreeShape = new THREE.Mesh(
     new THREE.ConeGeometry(2, 6, 32),
     phongMaterial
   );
   TreeShape.position.set(-10, 4, 4);
-  // scene.add(TreeShape);
+  // scene.add(TreeShape);s
 
   const CannonTree = new CANNON.Cylinder(0.01, 3, 6, 4, 1);
   const CannonBodyTree = new CANNON.Body({ mass: 0 });
@@ -1080,7 +1519,6 @@ function initCannon() {
   CannonBodyTree.position.z = TreeShape.position.z;
   world.addBody(CannonBodyTree);
   //
-  // fireplace end
   //
   //
   //
@@ -1142,7 +1580,7 @@ function initCannon() {
     halfExtents2.z * 2
   );
   const texturefront = new THREE.TextureLoader().load(
-    "./assets/logo-weband-gold2.png"
+    "./assets/logo-weband.png"
   );
   texturefront.center.x = 0.5;
   texturefront.center.y = 0.5;
@@ -1150,7 +1588,7 @@ function initCannon() {
   texturefront.repeat.set(2, 4);
   // texturefront.minFilter = THREE.NearestFilter;
   const textureback = new THREE.TextureLoader().load(
-    "./assets/logo-weband-gold2.png"
+    "./assets/logo-weband.png"
   );
   textureback.center.x = 0.5;
   textureback.center.y = 0.5;
@@ -1166,7 +1604,7 @@ function initCannon() {
   //   color: new THREE.Color(0xcfa0a0),
   //   side: THREE.FrontSide,
   // });
-  let panelColor = 0xffd700;
+  let panelColor = 0x00000;
   cubeMaterialArray.push(
     new THREE.MeshLambertMaterial({ color: panelColor, side: THREE.DoubleSide })
   );
@@ -1183,7 +1621,7 @@ function initCannon() {
     new THREE.MeshLambertMaterial({
       map: texturefront,
       transparent: true,
-      color: new THREE.Color(0xcfa0a0),
+      color: new THREE.Color(0x720bab),
       side: THREE.FrontSide,
     })
   );
@@ -1191,7 +1629,7 @@ function initCannon() {
     new THREE.MeshLambertMaterial({
       map: textureback,
       transparent: true,
-      color: new THREE.Color(0xcfa0a0),
+      color: new THREE.Color(0x720bab),
       side: THREE.FrontSide,
     })
   );
@@ -1247,7 +1685,7 @@ function initCannon() {
   }
   // Add right door hinge
   const texturefront2 = new THREE.TextureLoader().load(
-    "./assets/logo-weband-gold2.png"
+    "./assets/logo-weband.png"
   );
   texturefront2.center.x = 0.5;
   texturefront2.center.y = 0.5;
@@ -1257,7 +1695,7 @@ function initCannon() {
 
   // texturefront2.minFilter = THREE.NearestFilter;
   const textureback2 = new THREE.TextureLoader().load(
-    "./assets/logo-weband-gold2.png"
+    "./assets/logo-weband.png"
   );
   textureback2.center.x = 0.5;
   textureback2.center.y = 0.5;
@@ -1289,7 +1727,7 @@ function initCannon() {
     new THREE.MeshLambertMaterial({
       map: texturefront2,
       transparent: true,
-      color: new THREE.Color(0xcfa0a0),
+      color: new THREE.Color(0x720bab),
       side: THREE.FrontSide,
     })
   );
@@ -1297,7 +1735,7 @@ function initCannon() {
     new THREE.MeshLambertMaterial({
       map: textureback2,
       transparent: true,
-      color: new THREE.Color(0xcfa0a0),
+      color: new THREE.Color(0x720bab),
       side: THREE.FrontSide,
     })
   );
@@ -1368,7 +1806,7 @@ function initCannon() {
     if (!controls.enabled || onGift) {
       return;
     }
-
+    // console.log("throw");
     const halfExtentsBox = new CANNON.Vec3(0.05, 0.25, 0.25);
     const boxShapeThrow = new CANNON.Box(halfExtentsBox);
     const ballBody = new CANNON.Body({ mass: 2 });

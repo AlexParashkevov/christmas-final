@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="147" height="220" viewBox="0 0 147 220">
+  <g id="Group_83" data-name="Group 83" transform="translate(-1407 -686)">
+    <g id="Group_79" data-name="Group 79" transform="translate(0 -4)">
+      <g id="Rectangle_48" data-name="Rectangle 48" transform="translate(1407 690)" fill="#efefef" stroke="#d1d1d1" stroke-width="1">
+        <path d="M32,0h83a32,32,0,0,1,32,32V200a20,20,0,0,1-20,20H20A20,20,0,0,1,0,200V32A32,32,0,0,1,32,0Z" stroke="none"/>
+        <path d="M32,.5h83A31.5,31.5,0,0,1,146.5,32V200A19.5,19.5,0,0,1,127,219.5H20A19.5,19.5,0,0,1,.5,200V32A31.5,31.5,0,0,1,32,.5Z" fill="none"/>
+      </g>
+      <line id="Line_3" data-name="Line 3" y2="72" transform="translate(1479.5 690.5)" fill="none" stroke="#d1d1d1" stroke-width="1"/>
+      <line id="Line_4" data-name="Line 4" x2="146" transform="translate(1407.5 762.5)" fill="none" stroke="#d1d1d1" stroke-width="1"/>
+      <g id="Rectangle_49" data-name="Rectangle 49" transform="translate(1471 708)" fill="#fff" stroke="#d1d1d1" stroke-width="1">
+        <rect width="17" height="37" rx="6" stroke="none"/>
+        <rect x="0.5" y="0.5" width="16" height="36" rx="5.5" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

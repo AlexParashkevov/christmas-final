@@ -42,6 +42,48 @@
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
       }
+      .mobile {
+        display: none;
+        position: absolute;
+        width: 90vw;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background-image: url("/src/assets/christmast-bg.png");
+        background-size: cover;
+        border-radius: 50px;
+        color: #f0cd83;
+        text-align: center;
+      }
+
+      .mobile a {
+        text-decoration: none;
+        background-color: #226d5d;
+        border: 2px solid #f0cd83;
+        border-radius: 10px;
+        width: 150px;
+        height: 60px;
+        color: #f0cd83;
+        font-size: 25px;
+        margin: 0px auto;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 50px;
+      }
+
+      .mobile h2 {
+        font-size: 4vh;
+        margin: 40px 20px;
+      }
       .loading-bar {
         position: absolute;
         top: 60%;
@@ -64,6 +106,7 @@
         font-size: 28px;
         align-items: flex-end;
         right: 0px;
+        z-index: 1;
         color: #1e5f4e;
         border-radius: 20px;
         width: 200px;
@@ -108,6 +151,14 @@
         display: none;
       }
     </style>
+    <div class="mobile">
+      <h2>
+        Здравей, явно успешно си сканирал QR кода! Подготвили сме 3D коледна
+        игра, но за съжаление не стигна времето да я направим, работеща за
+        мобилна версия :( Посети merrychristmas.bg от компютър още днес!
+      </h2>
+      <a href="#">Сподели</a>
+    </div>
     <div class="legend">
       <div id="instructions">
         <div class="window">
@@ -117,12 +168,9 @@
               2021 година
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              recusandae, nulla officia voluptates quos ipsum consequuntur amet
-              beatae corrupti pariatur at dicta minima suscipit unde, aut quasi
-              eius placeat cumque doloremque reprehenderit. Accusantium dolorum
-              obcaecati exercitationem nobis tempora unde velit iste. Delectus
-              itaque, commodi placeat optio sed voluptatibus ipsa eum!
+              Помогни ни да украсим коледната елха, като намериш изгубените
+              играчки за нея. Търси внимателно, те могат да бъдат навсякъде :)
+              Очакват те скрити изненади и послания!
             </p>
             <div class="boxes">
               <div class="walkHouse">
@@ -144,14 +192,18 @@
                 </div>
               </div>
             </div>
-            <div class="play">Започни играта</div>
+            <div class="play">Започни игра</div>
           </div>
           <div class="window-right">
             <h2>Начин на управление</h2>
-            <p>движение</p>
+            <p>Движение</p>
             <div class="controls">
-              <div class="w">W</div>
-              <div class="asd"><span>A</span><span>S</span><span>D</span></div>
+              <img src="./assets/wasd.svg" alt="" />
+            </div>
+            <div class="line"></div>
+            <p>Кликане/Въртене</p>
+            <div class="mouse">
+              <img src="./assets/mouse.svg" alt="" />
             </div>
           </div>
         </div>
@@ -166,6 +218,13 @@
           <h2 class="of">от</h2>
           <h2 class="score-other">5</h2>
         </div>
+      </div>
+      <div class="player-time">
+        <h2 class="time-min">00</h2>
+        <span>:</span>
+        <h2 class="time-sec">00</h2>
+        <span>:</span>
+        <h2 class="time-mil">00</h2>
       </div>
       <div class="buybest-text">
         <h2>
@@ -195,6 +254,8 @@
           quisquam unde, nulla id.
         </h2>
       </div>
+      <div class="wrapper"></div>
+
       <div class="weband-text">
         <div class="img-wrapper">
           <img src="./assets/stockphoto.png" alt="" />
@@ -206,22 +267,33 @@
             Тук имате възможност да предоставите персонализирано пожелание под
             формата на текст, снимки или промоционално предложение, промо код
             или друго, което всеки посетител ще може да прочете! <br />
-            Оставяме на Вас възможността да бъдете креативни и полезни!
-          </p>
-          <p>
+            Оставяме на Вас възможността да бъдете креативни и полезни! <br />
             Възможност за линк с препратка към вашия фирмен сайт
-            <a href="https://example.com/" target="_blank">тук.</a>
           </p>
+          <a href="https://example.com/" target="_blank">Сайт</a>
+        </div>
+      </div>
+      <div class="found-text">
+        <div class="gift-text-wrapper2">
+          <button class="close">X</button>
+
+          <h2>Поздравления!</h2>
+          <p>
+            Снимай екрана си, заедно с резултата и го качи на стори. Тагни
+            @weband.bg и ние ще сложим името ти на къщата.
+          </p>
+          <a href="https://example.com/" target="_blank">Сподели</a>
         </div>
       </div>
       <div class="gotoweb">
+        <button class="close">X</button>
+
         <div class="gotoweb-wrapper">
           <img src="./assets/yourlogo.png" alt="" />
           <h2>Сигурни ли сте, че искате да отворите линка?</h2>
           <a class="continue" href="www.example.com" target="_blank"
             >Продължи</a
           >
-          <button class="close">X</button>
         </div>
       </div>
       <div class="scene"></div>
