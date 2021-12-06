@@ -2,17 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Weband Christmas</title>
+    <title>Дигитална Коледа</title>
     <meta
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Roboto&display=swap"
       rel="stylesheet"
     />
     <link
@@ -44,45 +42,36 @@
       }
       .mobile {
         display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        width: 90vw;
+        width: 100vw;
+        height: 100vh;
         top: 50%;
         left: 50%;
+        background: url("assets/christmas-bg-mobile.png");
+        background-size: cover;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        background-image: url("/src/assets/christmast-bg.png");
-        background-size: cover;
-        border-radius: 50px;
         color: #f0cd83;
-        text-align: center;
+        text-align: left;
       }
-
-      .mobile a {
-        text-decoration: none;
-        background-color: #226d5d;
-        border: 2px solid #f0cd83;
-        border-radius: 10px;
-        width: 150px;
-        height: 60px;
-        color: #f0cd83;
-        font-size: 25px;
-        margin: 0px auto;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        cursor: pointer;
-        margin-bottom: 50px;
-      }
-
       .mobile h2 {
-        font-size: 4vh;
-        margin: 40px 20px;
+        font-family: "Orelega One", cursive;
+        text-shadow: 4px 6px 20px #00000054;
+        letter-spacing: 2px;
+        font-weight: 100;
+        font-size: 5vh;
+        margin: initial;
+        margin: 0px 70px 30px 20px;
+      }
+      .mobile p {
+        font-size: 3vh;
+        margin: initial;
+        margin: 0px 90px 30px 20px;
+
+        color: white;
       }
       .loading-bar {
         position: absolute;
@@ -96,8 +85,18 @@
         transform-origin: top left;
         transition: transform 0.5s;
       }
-
       .close {
+        z-index: 1;
+        position: absolute;
+        right: 35px;
+        top: 35px;
+        border-radius: 50%;
+        border: none;
+        height: 50px;
+        width: 50px;
+        font-size: 27px;
+        background-color: white;
+        color: #226d5d;
         cursor: pointer;
       }
       .score {
@@ -152,12 +151,12 @@
       }
     </style>
     <div class="mobile">
-      <h2>
-        Здравей, явно успешно си сканирал QR кода! Подготвили сме 3D коледна
-        игра, но за съжаление не стигна времето да я направим, работеща за
-        мобилна версия :( Посети merrychristmas.bg от компютър още днес!
-      </h2>
-      <a href="#">Сподели</a>
+      <h2>Здравей, явно успешно си сканирал QR кода!</h2>
+      <p>
+        Подготвили сме 3D коледна игра, но за съжаление не стигна времето да я
+        направим, работеща за мобилна версия :(
+      </p>
+      <p>Посети merrychristmas.bg от компютър още днес!</p>
     </div>
     <div class="legend">
       <div id="instructions">
@@ -170,7 +169,7 @@
             <p>
               Помогни ни да украсим коледната елха, като намериш изгубените
               играчки за нея. Търси внимателно, те могат да бъдат навсякъде :)
-              Очакват те скрити изненади и послания!
+              Очакват те скрити изненади и пожелания!
             </p>
             <div class="boxes">
               <div class="walkHouse">
@@ -192,7 +191,7 @@
                 </div>
               </div>
             </div>
-            <div class="play">Започни игра</div>
+            <div class="play">Започни игра!</div>
           </div>
           <div class="window-right">
             <h2>Начин на управление</h2>
@@ -212,6 +211,7 @@
       <div class="score">
         <div class="img">
           <img src="./assets/tree.png" alt="" />
+          <div class="barw"></div>
         </div>
         <div class="score-table">
           <h2 class="score-active">0</h2>
@@ -270,7 +270,48 @@
             Оставяме на Вас възможността да бъдете креативни и полезни! <br />
             Възможност за линк с препратка към вашия фирмен сайт
           </p>
-          <a href="https://example.com/" target="_blank">Сайт</a>
+          <a class="btn" href="https://example.com/" target="_blank">Сайт</a>
+        </div>
+      </div>
+      <div class="tehnad-text">
+        <button class="close">X</button>
+
+        <div class="gift-text-wrapper">
+          <h2>Пожелание от “Технад ООД”</h2>
+          <p>
+            Уважаеми Клиенти, скъпи Приятели. Парите могат да купят книги, но не
+            и мъдрост. Парите могат да купят лекарства, но не и здраве. Парите
+            могат да купят обществено положение, но не и уважение. Парите могат
+            да купят жена, но не и любов. Животът е такъв, какво да се
+            прави...Пожелаваме Ви приятно посрещане на коледните и новогодишните
+            празници и Ви пожелаваме през Новата 2022 да отделяте по-малко време
+            да печелите пари, и да Ви остане повече време да сте мъдри, здрави,
+            уважавани и обичани.
+          </p>
+          <a class="btn" href="https://tehnad.com/" target="_blank">Сайт</a>
+        </div>
+      </div>
+      <div class="nanny-text">
+        <button class="close">X</button>
+
+        <div class="gift-text-wrapper">
+          <h2>
+            Екипът на BRAIN Academy и Best Nanny Ви пожелава весели празници,
+            изпълнени с хубави емоции и любов! Не спирайте да се развивате! А на
+            всички, които са горди родители, подаряваме:
+          </h2>
+          <p>
+            1. Отстъпка в размер на 10% за (модул) занималня в BRAIN Academy (за
+            един месец) <br />
+            2. Отстъпка в размер на 5% за (модул) занималня в BRAIN Academy (за
+            три поредни месеца) <br />
+            3. Безплатен урок за курс по избор -
+            <a href="https://brainacademy.bg/courses-for-kids/" target="_blank"
+              >https://brainacademy.bg/courses-for-kids/</a
+            >
+            (може да се използва до 28.02.2022г)
+          </p>
+          <a class="btn" href="https://bestnanny.eu/" target="_blank">Сайт</a>
         </div>
       </div>
       <div class="found-text">
@@ -282,12 +323,10 @@
             Снимай екрана си, заедно с резултата и го качи на стори. Тагни
             @weband.bg и ние ще сложим името ти на къщата.
           </p>
-          <a href="https://example.com/" target="_blank">Сподели</a>
         </div>
       </div>
       <div class="gotoweb">
         <button class="close">X</button>
-
         <div class="gotoweb-wrapper">
           <img src="./assets/yourlogo.png" alt="" />
           <h2>Сигурни ли сте, че искате да отворите линка?</h2>

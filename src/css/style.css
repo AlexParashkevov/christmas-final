@@ -5,7 +5,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  font-family: "Rubik", sans-serif;
 }
 
 #instructions {
@@ -38,38 +37,56 @@ body {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
 }
 
 .window-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   padding: 40px;
   width: 70%;
   border-radius: 50px 0px 0px 50px;
-  background-image: url("/src/assets/christmast-bg.png");
+  background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
 }
 
 .window-left h1 {
+  letter-spacing: 2px;
+  font-weight: 100;
+  font-family: "Orelega One", cursive;
+  text-shadow: 4px 6px 20px #00000054;
   text-align: center;
-  font-size: 6vh;
+  font-size: 8vh;
+  margin: initial;
   color: #f0cd83;
 }
 
 .window-left p {
-  font-size: 2vh;
-  padding: 0px 50px;
+  font-size: 2.5vh;
+  padding: 0px 30px;
   text-align: center;
 }
 
 .play {
+  font-family: "Orelega One", cursive;
+  letter-spacing: 2px;
+  font-weight: 100;
   background-color: #226d5d;
   border: 2px solid #f0cd83;
   border-radius: 10px;
-  width: 25vw;
+  width: 22vw;
   height: 8vh;
   color: #f0cd83;
-  font-size: 25px;
+  font-size: 4vh;
   margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -87,15 +104,14 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin-bottom: 30px;
 }
 
 .walkHouse {
-  width: 14vw;
-  height: 17vh;
+  width: 16vw;
+  height: 19vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,8 +129,7 @@ body {
 
 .walkHouse img {
   display: block !important;
-  height: 10vh;
-  margin-left: 1vw;
+  height: 12vh;
 }
 
 .walkHouse::after {
@@ -122,7 +137,7 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.8vh;
+  font-size: 2vh;
   bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -130,8 +145,8 @@ body {
 }
 
 .FindGifts {
-  width: 14vw;
-  height: 17vh;
+  width: 16vw;
+  height: 19vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -149,8 +164,7 @@ body {
 
 .FindGifts img {
   display: block !important;
-  height: 10vh;
-  margin-left: 1vw;
+  height: 12vh;
 }
 
 .FindGifts::after {
@@ -158,7 +172,7 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.8vh;
+  font-size: 2vh;
   bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -166,8 +180,8 @@ body {
 }
 
 .ShareSocial {
-  width: 14vw;
-  height: 17vh;
+  width: 16vw;
+  height: 19vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,16 +199,15 @@ body {
 
 .ShareSocial img {
   display: block !important;
-  height: 10vh;
-  margin-left: 1vw;
+  height: 12vh;
 }
 
 .ShareSocial::after {
-  content: "Сподели във Facebook";
+  content: "Сподели ни резултата";
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 1.8vh;
+  font-size: 2vh;
   bottom: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -205,12 +218,16 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .numAndImg .number {
   position: relative;
   margin: 10px;
-  font-size: 65px;
+  font-size: 12vh;
+  font-family: "Orelega One", cursive;
   z-index: 1;
   color: #226d5d;
 }
@@ -219,9 +236,9 @@ body {
   content: "";
   position: absolute;
   z-index: -1;
-  left: 3px;
-  height: 50px;
-  width: 50px;
+  left: 10px;
+  height: 7vh;
+  width: 7vh;
   background-color: #c69835;
   border-radius: 50%;
 }
@@ -246,11 +263,13 @@ body {
 
 .window-right h2 {
   font-size: 5vh;
+  font-weight: 100;
   margin: 3vh 0px;
   color: #1e5f4e;
 }
 
 .window-right p {
+  font-size: 2.2vh;
   color: #1e5f4e;
 }
 
@@ -403,8 +422,8 @@ body {
   width: 40vw;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-image: url("/src/assets/christmast-bg.png");
-  background-size: 100% 105%;
+  background-image: url("/src/assets/christmas-bg.svg");
+  background-size: cover;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   color: #ffffff;
@@ -463,20 +482,7 @@ body {
 }
 
 .mouse img {
-  height: 15vh;
-}
-
-.close {
-  position: absolute;
-  right: 35px;
-  top: 35px;
-  border-radius: 50%;
-  border: none;
-  height: 50px;
-  width: 50px;
-  font-size: 27px;
-  background-color: white;
-  color: #226d5d;
+  height: 25vh;
 }
 
 .img {
@@ -491,6 +497,18 @@ body {
   display: block !important;
 }
 
+.bar {
+  position: absolute;
+  background-color: #2b6352;
+  width: 40px;
+  height: 25%;
+  bottom: 0px;
+  z-index: -1;
+  -webkit-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  left: 20px;
+}
+
 .gift-text-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -503,12 +521,11 @@ body {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  background-image: url("/src/assets/christmast-bg.png");
+  background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
-  background-size: 120%;
-  background-position-x: -70px;
+  background-size: 100%;
   border-radius: 0px 0px 50px 50px;
-  padding: 20px 130px;
+  padding: 6vh;
 }
 
 .gift-text-wrapper h2 {
@@ -516,6 +533,7 @@ body {
   margin: 0px;
   margin-bottom: 20px;
   color: #f0cd83;
+  text-shadow: 4px 6px 20px #00000054;
 }
 
 .gift-text-wrapper p {
@@ -524,7 +542,7 @@ body {
   margin-bottom: 20px;
 }
 
-.gift-text-wrapper a {
+.gift-text-wrapper .btn {
   text-decoration: none;
   background-color: #226d5d;
   border: 2px solid #f0cd83;
@@ -558,46 +576,30 @@ body {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  background-image: url("/src/assets/christmast-bg.png");
+  background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
   background-size: 120%;
   background-position-x: -70px;
   border-radius: 50px;
-  padding: 20px 130px;
+  padding: 100px 100px;
 }
 
 .gift-text-wrapper2 h2 {
+  margin: initial;
+  margin-bottom: 20px;
   font-size: 6vh;
   color: #f0cd83;
+  text-shadow: 4px 6px 20px #00000054;
 }
 
 .gift-text-wrapper2 p {
-  font-size: 2vh;
-}
-
-.gift-text-wrapper2 a {
-  text-decoration: none;
-  background-color: #226d5d;
-  border: 2px solid #f0cd83;
-  border-radius: 10px;
-  width: 300px;
-  height: 60px;
-  color: #f0cd83;
-  font-size: 25px;
-  margin: 0px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  cursor: pointer;
+  margin: initial;
+  font-size: 3vh;
+  text-align: center;
 }
 
 .weband-text {
+  width: 70%;
   z-index: 10;
   position: absolute;
   left: 50%;
@@ -608,6 +610,82 @@ body {
   top: -100vh;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+}
+
+.weband-text a {
+  font-size: 30px;
+  color: green;
+}
+
+.weband-text .gift-text-wrapper h2 {
+  text-shadow: 3px 4px 20px #000000;
+}
+
+.weband-text .gift-text-wrapper p {
+  font-size: 3vh;
+}
+
+.tehnad-text {
+  width: 70%;
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #ffffff;
+  border-radius: 20px;
+  top: -100vh;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+.tehnad-text a {
+  font-size: 30px;
+  color: #f0cd83;
+}
+
+.tehnad-text .gift-text-wrapper {
+  border-radius: 50px;
+}
+
+.tehnad-text .gift-text-wrapper h2 {
+  text-shadow: 3px 4px 20px #000000;
+}
+
+.tehnad-text .gift-text-wrapper p {
+  font-size: 3vh;
+}
+
+.nanny-text {
+  width: 70%;
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #ffffff;
+  border-radius: 20px;
+  top: -100vh;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+.nanny-text a {
+  font-size: 30px;
+  color: #f0cd83;
+}
+
+.nanny-text .gift-text-wrapper {
+  border-radius: 50px;
+}
+
+.nanny-text .gift-text-wrapper h2 {
+  font-size: 5vh;
+  text-shadow: 3px 4px 20px #000000;
+}
+
+.nanny-text .gift-text-wrapper p {
+  font-size: 3vh;
 }
 
 .found-text {
@@ -621,11 +699,6 @@ body {
   top: -100vh;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
-}
-
-.weband-text > a {
-  font-size: 30px;
-  color: green;
 }
 
 .img-wrapper img {
