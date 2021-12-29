@@ -1,7 +1,7 @@
 @charset "UTF-8";
 html,
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
@@ -56,16 +56,16 @@ body {
   width: 70%;
   border-radius: 50px 0px 0px 50px;
   background-image: url("/src/assets/christmas-bg.svg");
-  background-size: cover;
+  background-size: 105%;
+  background-position: center;
 }
 
 .window-left h1 {
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 100;
   font-family: "Orelega One", cursive;
-  text-shadow: 4px 6px 20px #00000054;
   text-align: center;
-  font-size: 8vh;
+  font-size: 9vh;
   margin: initial;
   color: #f0cd83;
 }
@@ -78,7 +78,7 @@ body {
 
 .play {
   font-family: "Orelega One", cursive;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 100;
   background-color: #226d5d;
   border: 2px solid #f0cd83;
@@ -86,7 +86,7 @@ body {
   width: 22vw;
   height: 8vh;
   color: #f0cd83;
-  font-size: 4vh;
+  font-size: 3vh;
   margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -110,8 +110,8 @@ body {
 }
 
 .walkHouse {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,16 +137,16 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 2vh;
-  bottom: 5px;
+  font-size: 1.8vh;
+  bottom: 8px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
 .FindGifts {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -172,16 +172,16 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 2vh;
-  bottom: 5px;
+  font-size: 1.8vh;
+  bottom: 8px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
 .ShareSocial {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -199,7 +199,7 @@ body {
 
 .ShareSocial img {
   display: block !important;
-  height: 12vh;
+  height: 10vh;
 }
 
 .ShareSocial::after {
@@ -207,8 +207,8 @@ body {
   position: absolute;
   white-space: nowrap;
   color: #226d5d;
-  font-size: 2vh;
-  bottom: 5px;
+  font-size: 1.8vh;
+  bottom: 8px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -228,6 +228,8 @@ body {
   margin: 10px;
   font-size: 12vh;
   font-family: "Orelega One", cursive;
+  letter-spacing: 1px;
+  font-weight: 100;
   z-index: 1;
   color: #226d5d;
 }
@@ -269,7 +271,7 @@ body {
 }
 
 .window-right p {
-  font-size: 2.2vh;
+  font-size: 2.5vh;
   color: #1e5f4e;
 }
 
@@ -306,54 +308,6 @@ body {
   top: 50%;
   height: 5%;
   width: 100%;
-}
-
-.buybest-text {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: rgba(41, 72, 157, 0.8);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  color: #f6e002;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-
-.cashExp-text {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: rgba(206, 35, 39, 0.8);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  color: #040404;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-
-.dalsiat-text {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: rgba(0, 147, 67, 0.8);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  color: #ec2528;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
 }
 
 .controls {
@@ -415,10 +369,17 @@ body {
   display: none;
 }
 
-.gotoweb {
+.gotowebRetap,
+.gotowebIdeas,
+.gotowebBuybest,
+.gotowebWeband,
+.gotowebBrainAcademy,
+.gotowebSofun,
+.gotowebDalsiat,
+.gotowebTehnad,
+.gotowebBestNanny {
   position: absolute;
   left: 50%;
-  height: 40vh;
   width: 40vw;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -427,25 +388,50 @@ body {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 50px;
   top: -100vh;
-  padding: 80px;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+  padding: 5vh;
 }
 
-.gotoweb img {
+.gotowebRetap img,
+.gotowebIdeas img,
+.gotowebBuybest img,
+.gotowebWeband img,
+.gotowebBrainAcademy img,
+.gotowebSofun img,
+.gotowebDalsiat img,
+.gotowebTehnad img,
+.gotowebBestNanny img {
+  border-radius: 20px;
   width: 20%;
   display: block !important;
 }
 
-.gotoweb h2 {
+.gotowebRetap h2,
+.gotowebIdeas h2,
+.gotowebBuybest h2,
+.gotowebWeband h2,
+.gotowebBrainAcademy h2,
+.gotowebSofun h2,
+.gotowebDalsiat h2,
+.gotowebTehnad h2,
+.gotowebBestNanny h2 {
   text-align: center;
   font-size: 4vh;
   color: #f0cd83;
 }
 
-.gotoweb .gotoweb-wrapper {
+.gotowebRetap .gotoweb-wrapper,
+.gotowebIdeas .gotoweb-wrapper,
+.gotowebBuybest .gotoweb-wrapper,
+.gotowebWeband .gotoweb-wrapper,
+.gotowebBrainAcademy .gotoweb-wrapper,
+.gotowebSofun .gotoweb-wrapper,
+.gotowebDalsiat .gotoweb-wrapper,
+.gotowebTehnad .gotoweb-wrapper,
+.gotowebBestNanny .gotoweb-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -457,9 +443,31 @@ body {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  letter-spacing: 1px;
+  font-family: "Orelega One", cursive;
 }
 
-.gotoweb .continue {
+.gotowebRetap .gotoweb-wrapper h2,
+.gotowebIdeas .gotoweb-wrapper h2,
+.gotowebBuybest .gotoweb-wrapper h2,
+.gotowebWeband .gotoweb-wrapper h2,
+.gotowebBrainAcademy .gotoweb-wrapper h2,
+.gotowebSofun .gotoweb-wrapper h2,
+.gotowebDalsiat .gotoweb-wrapper h2,
+.gotowebTehnad .gotoweb-wrapper h2,
+.gotowebBestNanny .gotoweb-wrapper h2 {
+  font-weight: 100;
+}
+
+.gotowebRetap .continue,
+.gotowebIdeas .continue,
+.gotowebBuybest .continue,
+.gotowebWeband .continue,
+.gotowebBrainAcademy .continue,
+.gotowebSofun .continue,
+.gotowebDalsiat .continue,
+.gotowebTehnad .continue,
+.gotowebBestNanny .continue {
   background-color: #226d5d;
   border: 2px solid #f0cd83;
   border-radius: 10px;
@@ -467,7 +475,10 @@ body {
   width: 300px;
   height: 60px;
   color: #f0cd83;
-  font-size: 25px;
+  font-size: 3vh;
+  font-weight: 100;
+  font-family: "Orelega One", cursive;
+  letter-spacing: 1px;
   margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -523,37 +534,51 @@ body {
   position: relative;
   background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
-  background-size: 100%;
-  border-radius: 0px 0px 50px 50px;
-  padding: 6vh;
+  background-position: center;
+  background-position-y: -7vh;
+  border-radius: 50px;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 5vh 15vh;
 }
 
 .gift-text-wrapper h2 {
-  font-size: 6vh;
+  font-size: 9vh;
   margin: 0px;
+  font-weight: 100;
+  font-family: "Orelega One", cursive;
+  letter-spacing: 1px;
   margin-bottom: 20px;
   color: #f0cd83;
-  text-shadow: 4px 6px 20px #00000054;
 }
 
 .gift-text-wrapper p {
-  font-size: 2vh;
+  font-size: 2.5vh;
   margin: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
+}
+
+.gift-text-wrapper p a {
+  font-size: 2.5vh;
+  text-decoration: none;
 }
 
 .gift-text-wrapper .btn {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   text-decoration: none;
   background-color: #226d5d;
+  font-weight: 100;
+  font-family: "Orelega One", cursive;
+  letter-spacing: 1px;
   border: 2px solid #f0cd83;
   border-radius: 10px;
   width: 300px;
   height: 60px;
   color: #f0cd83;
-  font-size: 25px;
+  font-size: 3vh;
   margin: 0px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -564,99 +589,11 @@ body {
   cursor: pointer;
 }
 
-.gift-text-wrapper2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  background-image: url("/src/assets/christmas-bg.svg");
-  background-size: cover;
-  background-size: 120%;
-  background-position-x: -70px;
-  border-radius: 50px;
-  padding: 100px 100px;
-}
-
-.gift-text-wrapper2 h2 {
-  margin: initial;
-  margin-bottom: 20px;
-  font-size: 6vh;
-  color: #f0cd83;
-  text-shadow: 4px 6px 20px #00000054;
-}
-
-.gift-text-wrapper2 p {
-  margin: initial;
-  font-size: 3vh;
-  text-align: center;
-}
-
-.weband-text {
-  width: 70%;
-  z-index: 10;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: #ffffff;
-  border-radius: 20px;
-  top: -100vh;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-
-.weband-text a {
-  font-size: 30px;
-  color: green;
-}
-
-.weband-text .gift-text-wrapper h2 {
-  text-shadow: 3px 4px 20px #000000;
-}
-
-.weband-text .gift-text-wrapper p {
-  font-size: 3vh;
-}
-
-.tehnad-text {
-  width: 70%;
-  z-index: 10;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: #ffffff;
-  border-radius: 20px;
-  top: -100vh;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-
-.tehnad-text a {
-  font-size: 30px;
-  color: #f0cd83;
-}
-
-.tehnad-text .gift-text-wrapper {
-  border-radius: 50px;
-}
-
-.tehnad-text .gift-text-wrapper h2 {
-  text-shadow: 3px 4px 20px #000000;
-}
-
-.tehnad-text .gift-text-wrapper p {
-  font-size: 3vh;
-}
-
-.nanny-text {
+.weband-text,
+.tehnad-text,
+.nanny-text,
+.dalsiat-text,
+.buybest-text {
   width: 70%;
   z-index: 10;
   position: absolute;
@@ -671,7 +608,6 @@ body {
 }
 
 .nanny-text a {
-  font-size: 30px;
   color: #f0cd83;
 }
 
@@ -681,11 +617,23 @@ body {
 
 .nanny-text .gift-text-wrapper h2 {
   font-size: 5vh;
-  text-shadow: 3px 4px 20px #000000;
+  width: 80%;
 }
 
 .nanny-text .gift-text-wrapper p {
-  font-size: 3vh;
+  font-size: 2.5vh;
+}
+
+.weband-text .gift-text-wrapper {
+  padding: 2vh 15vh;
+}
+
+.dalsiat-text .gift-text-wrapper {
+  padding: 2vh 15vh;
+}
+
+.nanny-text .gift-text-wrapper {
+  padding: 2vh 15vh;
 }
 
 .found-text {
@@ -701,8 +649,38 @@ body {
   transition: 1s ease-in-out;
 }
 
+.img-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.img-wrapper .weband3dlogo {
+  height: 130px;
+}
+
+.img-wrapper .dalsiatlogo {
+  height: 80px;
+}
+
+.img-wrapper .buybestlogo {
+  height: 100px;
+}
+
+.img-wrapper .tehnadlogo {
+  height: 80px;
+}
+
+.img-wrapper .brainad {
+  height: 130px;
+}
+
 .img-wrapper img {
-  width: 100%;
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
   display: block !important;
 }
 
@@ -714,6 +692,7 @@ body {
   z-index: 0;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+  cursor: pointer;
 }
 
 .player-time {
@@ -740,7 +719,11 @@ body {
 }
 
 .player-time h2 {
-  font-size: 25px;
+  font-size: 3vh;
   margin: 0px;
+}
+
+.close {
+  display: block !important;
 }
 /*# sourceMappingURL=style.css.map */

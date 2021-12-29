@@ -1,6 +1,6 @@
 html,
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
@@ -33,14 +33,14 @@ body {
   width: 70%;
   border-radius: 50px 0px 0px 50px;
   background-image: url("/src/assets/christmas-bg.svg");
-  background-size: cover;
+  background-size: 105%;
+  background-position: center;
   h1 {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     font-weight: 100;
     font-family: "Orelega One", cursive;
-    text-shadow: 4px 6px 20px #00000054;
     text-align: center;
-    font-size: 8vh;
+    font-size: 9vh;
     margin: initial;
     color: #f0cd83;
   }
@@ -52,7 +52,7 @@ body {
 }
 .play {
   font-family: "Orelega One", cursive;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 100;
   background-color: #226d5d;
   border: 2px solid #f0cd83;
@@ -60,7 +60,8 @@ body {
   width: 22vw;
   height: 8vh;
   color: #f0cd83;
-  font-size: 4vh;
+  font-size: 3vh;
+
   margin: 0px auto;
   display: flex;
   align-items: center;
@@ -73,8 +74,8 @@ body {
   margin-bottom: 30px;
 }
 .walkHouse {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
   display: flex;
   position: relative;
   align-items: center;
@@ -91,16 +92,17 @@ body {
     position: absolute;
     white-space: nowrap;
     color: #226d5d;
-    font-size: 2vh;
+    font-size: 1.8vh;
 
-    bottom: 5px;
+    bottom: 8px;
+
     left: 50%;
     transform: translateX(-50%);
   }
 }
 .FindGifts {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
   display: flex;
   position: relative;
   align-items: center;
@@ -118,16 +120,17 @@ body {
     position: absolute;
     white-space: nowrap;
     color: #226d5d;
-    font-size: 2vh;
+    font-size: 1.8vh;
 
-    bottom: 5px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
   }
 }
 .ShareSocial {
-  width: 16vw;
-  height: 19vh;
+  width: 14vw;
+  height: 18vh;
+
   display: flex;
   position: relative;
   align-items: center;
@@ -138,16 +141,17 @@ body {
   img {
     display: block !important;
 
-    height: 12vh;
+    height: 10vh;
   }
   &::after {
     content: "Сподели ни резултата";
     position: absolute;
     white-space: nowrap;
     color: #226d5d;
-    font-size: 2vh;
+    font-size: 1.8vh;
 
-    bottom: 5px;
+    bottom: 8px;
+
     left: 50%;
     transform: translateX(-50%);
   }
@@ -160,6 +164,8 @@ body {
     margin: 10px;
     font-size: 12vh;
     font-family: "Orelega One", cursive;
+    letter-spacing: 1px;
+    font-weight: 100;
     z-index: 1;
     color: #226d5d;
     &::after {
@@ -190,7 +196,7 @@ body {
     color: #1e5f4e;
   }
   p {
-    font-size: 2.2vh;
+    font-size: 2.5vh;
     color: #1e5f4e;
   }
 
@@ -227,43 +233,6 @@ body {
   height: 5%;
   width: 100%;
 }
-.buybest-text {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(41, 72, 157, 0.8);
-  backdrop-filter: blur(5px);
-  color: #f6e002;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  transition: 1s ease-in-out;
-}
-.cashExp-text {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(206, 35, 39, 0.8);
-  backdrop-filter: blur(5px);
-  color: #040404;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  transition: 1s ease-in-out;
-}
-.dalsiat-text {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 147, 67, 0.8);
-  backdrop-filter: blur(5px);
-  color: #ec2528;
-  border-radius: 20px;
-  top: -100vh;
-  padding: 80px;
-  transition: 1s ease-in-out;
-}
-
 .controls {
   font-size: 3vh;
   display: flex;
@@ -308,21 +277,29 @@ body {
 .legend {
   display: none;
 }
-.gotoweb {
+.gotowebRetap,
+.gotowebIdeas,
+.gotowebBuybest,
+.gotowebWeband,
+.gotowebBrainAcademy,
+.gotowebSofun,
+.gotowebDalsiat,
+.gotowebTehnad,
+.gotowebBestNanny {
   position: absolute;
   left: 50%;
-  height: 40vh;
   width: 40vw;
   transform: translate(-50%, -50%);
   background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
   backdrop-filter: blur(5px);
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 50px;
   top: -100vh;
-  padding: 80px;
   transition: 1s ease-in-out;
+  padding: 5vh;
   img {
+    border-radius: 20px;
     width: 20%;
     display: block !important;
   }
@@ -336,6 +313,11 @@ body {
     flex-direction: column;
     align-items: center;
     position: relative;
+    letter-spacing: 1px;
+    font-family: "Orelega One", cursive;
+    h2 {
+      font-weight: 100;
+    }
   }
   .continue {
     background-color: #226d5d;
@@ -345,7 +327,10 @@ body {
     width: 300px;
     height: 60px;
     color: #f0cd83;
-    font-size: 25px;
+    font-size: 3vh;
+    font-weight: 100;
+    font-family: "Orelega One", cursive;
+    letter-spacing: 1px;
     margin: 0px auto;
     display: flex;
     align-items: center;
@@ -385,30 +370,45 @@ body {
   position: relative;
   background-image: url("/src/assets/christmas-bg.svg");
   background-size: cover;
-  background-size: 100%;
-  border-radius: 0px 0px 50px 50px;
-  padding: 6vh;
+  background-position: center;
+  background-position-y: -7vh;
+  border-radius: 50px;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 5vh 15vh;
   h2 {
-    font-size: 6vh;
+    font-size: 9vh;
+
     margin: 0px;
+    font-weight: 100;
+    font-family: "Orelega One", cursive;
+    letter-spacing: 1px;
     margin-bottom: 20px;
     color: #f0cd83;
-    text-shadow: 4px 6px 20px #00000054;
   }
   p {
-    font-size: 2vh;
+    font-size: 2.5vh;
     margin: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    a {
+      font-size: 2.5vh;
+
+      text-decoration: none;
+    }
   }
   .btn {
+    display: flex !important;
     text-decoration: none;
     background-color: #226d5d;
+    font-weight: 100;
+    font-family: "Orelega One", cursive;
+    letter-spacing: 1px;
     border: 2px solid #f0cd83;
     border-radius: 10px;
     width: 300px;
     height: 60px;
     color: #f0cd83;
-    font-size: 25px;
+    font-size: 3vh;
     margin: 0px auto;
     display: flex;
     align-items: center;
@@ -416,33 +416,13 @@ body {
     cursor: pointer;
   }
 }
-.gift-text-wrapper2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  background-image: url("/src/assets/christmas-bg.svg");
-  background-size: cover;
-  background-size: 120%;
-  background-position-x: -70px;
-  border-radius: 50px;
-  padding: 100px 100px;
-  h2 {
-    margin: initial;
-    margin-bottom: 20px;
-    font-size: 6vh;
-    color: #f0cd83;
-    text-shadow: 4px 6px 20px #00000054;
-  }
-  p {
-    margin: initial;
-    font-size: 3vh;
-    text-align: center;
-  }
-}
-.weband-text {
-  width: 70%;
 
+.weband-text,
+.tehnad-text,
+.nanny-text,
+.dalsiat-text,
+.buybest-text {
+  width: 70%;
   z-index: 10;
   position: absolute;
   left: 50%;
@@ -451,69 +431,38 @@ body {
   border-radius: 20px;
   top: -100vh;
   transition: 1s ease-in-out;
-  a {
-    font-size: 30px;
-    color: green;
-  }
-  .gift-text-wrapper {
-    h2 {
-      text-shadow: 3px 4px 20px #000000;
-    }
-    p {
-      font-size: 3vh;
-    }
-  }
-}
-.tehnad-text {
-  width: 70%;
-
-  z-index: 10;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ffffff;
-  border-radius: 20px;
-  top: -100vh;
-  transition: 1s ease-in-out;
-  a {
-    font-size: 30px;
-    color: #f0cd83;
-  }
-  .gift-text-wrapper {
-    border-radius: 50px;
-    h2 {
-      text-shadow: 3px 4px 20px #000000;
-    }
-    p {
-      font-size: 3vh;
-    }
-  }
 }
 .nanny-text {
-  width: 70%;
-  z-index: 10;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ffffff;
-  border-radius: 20px;
-  top: -100vh;
-  transition: 1s ease-in-out;
   a {
-    font-size: 30px;
     color: #f0cd83;
   }
   .gift-text-wrapper {
     border-radius: 50px;
     h2 {
       font-size: 5vh;
-      text-shadow: 3px 4px 20px #000000;
+      width: 80%;
     }
     p {
-      font-size: 3vh;
+      font-size: 2.5vh;
     }
   }
 }
+.weband-text {
+  .gift-text-wrapper {
+    padding: 2vh 15vh;
+  }
+}
+.dalsiat-text {
+  .gift-text-wrapper {
+    padding: 2vh 15vh;
+  }
+}
+.nanny-text {
+  .gift-text-wrapper {
+    padding: 2vh 15vh;
+  }
+}
+
 .found-text {
   z-index: 10;
   position: absolute;
@@ -525,8 +474,25 @@ body {
   transition: 1s ease-in-out;
 }
 .img-wrapper {
+  display: flex;
+  justify-content: center;
+  .weband3dlogo {
+    height: 130px;
+  }
+  .dalsiatlogo {
+    height: 80px;
+  }
+  .buybestlogo {
+    height: 100px;
+  }
+  .tehnadlogo {
+    height: 80px;
+  }
+  .brainad {
+    height: 130px;
+  }
   img {
-    width: 100%;
+    filter: brightness(0) invert(1);
     display: block !important;
   }
 }
@@ -537,40 +503,8 @@ body {
   height: 100%;
   z-index: 0;
   transition: 1s ease-in-out;
+  cursor: pointer;
 }
-// .mobile {
-//   display: none;
-//   position: absolute;
-//   width: 90vw;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   background-image: url("/src/assets/christmast-bg.png");
-//   background-size: cover;
-//   border-radius: 50px;
-//   color: #f0cd83;
-//   text-align: center;
-//   a {
-//     text-decoration: none;
-//     background-color: #226d5d;
-//     border: 2px solid #f0cd83;
-//     border-radius: 10px;
-//     width: 150px;
-//     height: 60px;
-//     color: #f0cd83;
-//     font-size: 25px;
-//     margin: 0px auto;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     cursor: pointer;
-//     margin-bottom: 50px;
-//   }
-//   h2 {
-//     font-size: 4vh;
-//     margin: 40px 20px;
-//   }
-// }
 .player-time {
   margin: 10px;
   z-index: 0;
@@ -588,7 +522,10 @@ body {
   background-color: white;
   padding-left: 20px;
   h2 {
-    font-size: 25px;
+    font-size: 3vh;
     margin: 0px;
   }
+}
+.close {
+  display: block !important;
 }

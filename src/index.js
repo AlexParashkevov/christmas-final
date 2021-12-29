@@ -20,7 +20,7 @@ if (screen.width < 1024) {
 } else {
   const hitSound = new Audio("./assets/music.mp3");
   const playHitSound = () => {
-    hitSound.volume = 0.1;
+    hitSound.volume = 0.02;
     hitSound.currentTime = 0;
     hitSound.play();
   };
@@ -217,8 +217,6 @@ if (screen.width < 1024) {
   let outlineMesh8 = null;
   let wall1 = null;
   let wall2 = null;
-  let outlineMaterial9 = null;
-  let outlineMesh9 = null;
   let outlineMaterial10 = null;
   let outlineMesh10 = null;
   let outlineMaterial11 = null;
@@ -229,9 +227,7 @@ if (screen.width < 1024) {
   let outlineMaterialDS = null;
   let outlineMeshDS = null;
   let dalsiatGift = null;
-  let wall3 = null;
   let webandGift = null;
-  let webandGift2 = null;
   let doorLeft = null;
   let doorRight = null;
   let gifts = [];
@@ -249,12 +245,35 @@ if (screen.width < 1024) {
   let dsspin;
   let bbspin;
   let thspin;
+  let wespin;
+  let naspin;
   let soundon = null;
   let soundoff = null;
+  let wall3;
+  let wall3material;
+  let wall3mesh;
+  let wall4;
+  let wall4material;
+  let wall4mesh;
+  let wall5;
+  let wall5material;
+  let wall5mesh;
+  let wall6;
+  let wall6material;
+  let wall6mesh;
+  let wall7;
+  let wall7material;
+  let wall7mesh;
+  let wall8;
+  let wall8material;
+  let wall8mesh;
+  let wall9;
+  let wall9material;
+  let wall9mesh;
   // Load a glTF resource
   loader.load(
     // resource URL
-    "./assets/testChristmas.glb",
+    "./assets/testChristmas6.glb",
     // called when the resource is loaded
     function (gltf) {
       // scene.add(gltf.scene);
@@ -290,52 +309,7 @@ if (screen.width < 1024) {
           } else if (child.name === "treeSmall") {
             treeSmall = child;
             treeSmall.visible = false;
-          }
-          // } else if (child.name === "giftInteract") {
-          //   giftInteract = child;
-          //   gifts.push(giftInteract);
-          //   outlineMaterial2 = new THREE.MeshBasicMaterial({
-          //     color: 0xf4e404,
-          //     side: THREE.BackSide,
-          //   });
-          //   outlineMesh2 = new THREE.Mesh(
-          //     giftInteract.geometry,
-          //     outlineMaterial2
-          //   );
-          //   outlineMesh2.position.copy(giftInteract.position);
-          //   outlineMesh2.rotation.copy(giftInteract.rotation);
-          //   outlineMesh2.scale.multiplyScalar(1.05);
-          //   scene.add(outlineMesh2);
-          //   outlineMesh2.visible = false;
-          // } else if (child.name === "CashExpGift") {
-          //   cashExpGift = child;
-          //   gifts.push(cashExpGift);
-          //   outlineMaterial3 = new THREE.MeshBasicMaterial({
-          //     color: 0xcb2424,
-          //     side: THREE.BackSide,
-          //   });
-          //   outlineMesh3 = new THREE.Mesh(cashExpGift.geometry, outlineMaterial3);
-          //   outlineMesh3.position.copy(cashExpGift.position);
-          //   outlineMesh3.rotation.copy(cashExpGift.rotation);
-          //   outlineMesh3.scale.multiplyScalar(1.05);
-          //   scene.add(outlineMesh3);
-          //   outlineMesh3.visible = false;
-          // } else if (child.name === "dalsiatGift") {
-          //   dalsiatGift = child;
-          //   gifts.push(dalsiatGift);
-          //   outlineMaterial4 = new THREE.MeshBasicMaterial({
-          //     color: 0x049444,
-          //     side: THREE.BackSide,
-          //   });
-          //   outlineMesh4 = new THREE.Mesh(dalsiatGift.geometry, outlineMaterial4);
-          //   outlineMesh4.position.copy(dalsiatGift.position);
-          //   outlineMesh4.position.y = -2.25;
-          //   outlineMesh4.rotation.copy(dalsiatGift.rotation);
-          //   outlineMesh4.scale.multiplyScalar(1.05);
-          //   scene.add(outlineMesh4);
-          //   outlineMesh4.visible = false;
-          // }
-          else if (child.name === "weband-gift") {
+          } else if (child.name === "weband-gift") {
             webandGift = child;
             gifts.push(webandGift);
             outlineMaterial5 = new THREE.MeshBasicMaterial({
@@ -352,23 +326,7 @@ if (screen.width < 1024) {
 
             scene.add(outlineMesh5);
             outlineMesh5.visible = false;
-          }
-          // else if (child.name === "weband-gift2") {
-          //   webandGift2 = child;
-          //   gifts.push(webandGift2);
-          //   outlineMaterial6 = new THREE.MeshBasicMaterial({
-          //     color: 0x720bab,
-          //     // side: THREE.BackSide,
-          //   });
-          //   outlineMesh6 = new THREE.Mesh(webandGift2.geometry, outlineMaterial6);
-          //   outlineMesh6.position.copy(webandGift2.position);
-          //   // console.log(outlineMesh6.position);
-          //   outlineMesh6.rotation.copy(webandGift2.rotation);
-          //   outlineMesh6.scale.multiplyScalar(1.02);
-          //   scene.add(outlineMesh6);
-          //   outlineMesh6.visible = false;
-          // }
-          else if (child.name === "buybest-present") {
+          } else if (child.name === "buybest-present") {
             BuyBestGift = child;
             gifts.push(BuyBestGift);
             outlineMaterial10 = new THREE.MeshBasicMaterial({
@@ -420,11 +378,11 @@ if (screen.width < 1024) {
 
             scene.add(outlineMeshDS);
             outlineMeshDS.visible = false;
-          } else if (child.name === "nanny-present") {
+          } else if (child.name === "brainacademy-present") {
             nannyGift = child;
             gifts.push(nannyGift);
             outlineMaterialNanny = new THREE.MeshBasicMaterial({
-              color: 0xa53a89,
+              color: 0x32cd32,
             });
             outlineMeshNanny = new THREE.Mesh(
               nannyGift.geometry,
@@ -441,7 +399,7 @@ if (screen.width < 1024) {
             wall1 = child;
             gifts.push(wall1);
             outlineMaterial7 = new THREE.MeshBasicMaterial({
-              color: 0xff0000,
+              color: 0x720bab,
             });
             outlineMesh7 = new THREE.Mesh(wall1.geometry, outlineMaterial7);
             outlineMesh7.position.copy(wall1.position);
@@ -454,7 +412,7 @@ if (screen.width < 1024) {
             wall2 = child;
             gifts.push(wall2);
             outlineMaterial8 = new THREE.MeshBasicMaterial({
-              color: 0xff0000,
+              color: 0x0000ff,
             });
             outlineMesh8 = new THREE.Mesh(wall2.geometry, outlineMaterial8);
             outlineMesh8.position.copy(wall2.position);
@@ -466,16 +424,94 @@ if (screen.width < 1024) {
           } else if (child.name === "wall3") {
             wall3 = child;
             gifts.push(wall3);
-            outlineMaterial9 = new THREE.MeshBasicMaterial({
+            wall3material = new THREE.MeshBasicMaterial({
+              color: 0xff1493,
+            });
+            wall3mesh = new THREE.Mesh(wall3.geometry, wall3material);
+            wall3mesh.position.copy(wall3.position);
+            wall3mesh.position.x = wall3.position.x + 0.1;
+            wall3mesh.rotation.copy(wall3.rotation);
+            wall3mesh.scale.multiplyScalar(1.1);
+            scene.add(wall3mesh);
+            wall3mesh.visible = false;
+          } else if (child.name === "wall4") {
+            wall4 = child;
+            gifts.push(wall4);
+            wall4material = new THREE.MeshBasicMaterial({
+              color: 0xffff00,
+            });
+            wall4mesh = new THREE.Mesh(wall4.geometry, wall4material);
+            wall4mesh.position.copy(wall4.position);
+            wall4mesh.position.x = wall4.position.x + 0.1;
+            wall4mesh.rotation.copy(wall4.rotation);
+            wall4mesh.scale.multiplyScalar(1.1);
+            scene.add(wall4mesh);
+            wall4mesh.visible = false;
+          } else if (child.name === "wall5") {
+            wall5 = child;
+            gifts.push(wall5);
+            wall5material = new THREE.MeshBasicMaterial({
+              color: 0x0000ff,
+            });
+            wall5mesh = new THREE.Mesh(wall5.geometry, wall5material);
+            wall5mesh.position.copy(wall5.position);
+            wall5mesh.position.x = wall5.position.x + 0.1;
+            wall5mesh.rotation.copy(wall5.rotation);
+            wall5mesh.scale.multiplyScalar(1.1);
+            scene.add(wall5mesh);
+            wall5mesh.visible = false;
+          } else if (child.name === "wall6") {
+            wall6 = child;
+            gifts.push(wall6);
+            wall6material = new THREE.MeshBasicMaterial({
+              color: 0x006400,
+            });
+            wall6mesh = new THREE.Mesh(wall6.geometry, wall6material);
+            wall6mesh.position.copy(wall6.position);
+            wall6mesh.position.x = wall6.position.x + 0.1;
+            wall6mesh.rotation.copy(wall6.rotation);
+            wall6mesh.scale.multiplyScalar(1.1);
+            scene.add(wall6mesh);
+            wall6mesh.visible = false;
+          } else if (child.name === "wall7") {
+            wall7 = child;
+            gifts.push(wall7);
+            wall7material = new THREE.MeshBasicMaterial({
               color: 0xff0000,
             });
-            outlineMesh9 = new THREE.Mesh(wall3.geometry, outlineMaterial9);
-            outlineMesh9.position.copy(wall3.position);
-            outlineMesh9.position.x = wall3.position.x + 0.1;
-            outlineMesh9.rotation.copy(wall3.rotation);
-            outlineMesh9.scale.multiplyScalar(1.1);
-            scene.add(outlineMesh9);
-            outlineMesh9.visible = false;
+            wall7mesh = new THREE.Mesh(wall7.geometry, wall7material);
+            wall7mesh.position.copy(wall7.position);
+            wall7mesh.position.x = wall7.position.x + 0.1;
+            wall7mesh.rotation.copy(wall7.rotation);
+            wall7mesh.scale.multiplyScalar(1.1);
+            scene.add(wall7mesh);
+            wall7mesh.visible = false;
+          } else if (child.name === "wall8") {
+            wall8 = child;
+            gifts.push(wall8);
+            wall8material = new THREE.MeshBasicMaterial({
+              color: 0x32cd32,
+            });
+            wall8mesh = new THREE.Mesh(wall8.geometry, wall8material);
+            wall8mesh.position.copy(wall8.position);
+            wall8mesh.position.x = wall8.position.x + 0.1;
+            wall8mesh.rotation.copy(wall8.rotation);
+            wall8mesh.scale.multiplyScalar(1.1);
+            scene.add(wall8mesh);
+            wall8mesh.visible = false;
+          } else if (child.name === "wall9") {
+            wall9 = child;
+            gifts.push(wall9);
+            wall9material = new THREE.MeshBasicMaterial({
+              color: 0x720bab,
+            });
+            wall9mesh = new THREE.Mesh(wall9.geometry, wall9material);
+            wall9mesh.position.copy(wall9.position);
+            wall9mesh.position.x = wall9.position.x + 0.1;
+            wall9mesh.rotation.copy(wall9.rotation);
+            wall9mesh.scale.multiplyScalar(1.1);
+            scene.add(wall9mesh);
+            wall9mesh.visible = false;
           } else if (child.name === "door-left") {
             doorLeft = child;
           } else if (child.name === "door-right") {
@@ -553,6 +589,10 @@ if (screen.width < 1024) {
             bbspin = child;
           } else if (child.name === "tehnad-logo") {
             thspin = child;
+          } else if (child.name === "brain-rotate") {
+            naspin = child;
+          } else if (child.name === "weband-2-logo") {
+            wespin = child;
           } else if (child.name === "soundoff") {
             soundoff = child;
             gifts.push(soundoff);
@@ -628,7 +668,7 @@ if (screen.width < 1024) {
         controls.enabled = false;
         menuClosed = false;
         if (!mute) {
-          console.log(mute);
+          // console.log(mute);
           hitSound.pause();
         }
 
@@ -636,12 +676,20 @@ if (screen.width < 1024) {
         document.querySelector(".cursor").style.display = "none";
         controlsLive = false;
         document.querySelector(".buybest-text").style.top = "-100vh";
-        document.querySelector(".cashExp-text").style.top = "-100vh";
         document.querySelector(".dalsiat-text").style.top = "-100vh";
         document.querySelector(".weband-text").style.top = "-100vh";
         document.querySelector(".tehnad-text").style.top = "-100vh";
         document.querySelector(".nanny-text").style.top = "-100vh";
-        document.querySelector(".gotoweb").style.top = "-100vh";
+        document.querySelector(".gotowebIdeas").style.top = "-100vh";
+        document.querySelector(".gotowebRetap").style.top = "-100vh";
+        document.querySelector(".gotowebWeband").style.top = "-100vh";
+        document.querySelector(".gotowebBuybest").style.top = "-100vh";
+        document.querySelector(".gotowebDalsiat").style.top = "-100vh";
+        document.querySelector(".gotowebSofun").style.top = "-100vh";
+        document.querySelector(".gotowebTehnad").style.top = "-100vh";
+        document.querySelector(".gotowebBrainAcademy").style.top = "-100vh";
+        document.querySelector(".gotowebBestNanny").style.top = "-100vh";
+
         document.querySelector(".esc").style.display = "none";
         document.querySelector(".player-time").style.display = "none";
         document.querySelector(".score").style.display = "none";
@@ -683,33 +731,31 @@ if (screen.width < 1024) {
 
   const raycaster = new THREE.Raycaster();
   const lock = new THREE.Vector3(0, 0, 1);
-  //
-  var onMouseDown2 = function (event) {
-    document.querySelector(".cashExp-text").style.top = "-100vh";
-    document.querySelector(".dalsiat-text").style.top = "-100vh";
-    document.querySelector(".buybest-text").style.top = "50%";
-    document.querySelector(".cursor").style.display = "none";
-  };
-  var onMouseDown = function (event) {
-    // console.log("click");
-    document.querySelector(".buybest-text").style.top = "-100vh";
-    document.querySelector(".dalsiat-text").style.top = "-100vh";
-    document.querySelector(".weband-text").style.top = "-100vh";
-    document.querySelector(".tehnad-text").style.top = "-100vh";
-    document.querySelector(".cashExp-text").style.top = "50%";
-    document.querySelector(".cursor").style.display = "none";
-  };
-  var onMouseDown3 = function (event) {
-    document.querySelector(".buybest-text").style.top = "-100vh";
-    document.querySelector(".cashExp-text").style.top = "-100vh";
-    document.querySelector(".weband-text").style.top = "-100vh";
-    document.querySelector(".tehnad-text").style.top = "-100vh";
-    document.querySelector(".dalsiat-text").style.top = "50%";
-    document.querySelector(".cursor").style.display = "none";
+  var onMouseDown3 = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      e.preventDefault();
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      // controlsLive = false;
+      // console.log("clicked");
+
+      document.querySelector(".dalsiat-text").style.top = "50%";
+      document.querySelector(".wrapper").style.top = "0vh";
+      document.querySelector(".cursor").style.display = "none";
+      // if (document.exitFullscreen) {
+      //   document.exitFullscreen();
+      // } else if (document.webkitExitFullscreen) {
+      //   document.webkitExitFullscreen();
+      // }
+      menuClosed = false;
+      controlsLive = false;
+    }
   };
   let mousedown = false;
   let btnClose = false;
-  var onMouseDown4 = function (e) {
+  var webandMouseDown = function (e) {
     if (menuClosed) {
       e.preventDefault();
       mousedown = true;
@@ -720,9 +766,6 @@ if (screen.width < 1024) {
       // controlsLive = false;
       // console.log("clicked");
 
-      document.querySelector(".buybest-text").style.top = "-100vh";
-      document.querySelector(".cashExp-text").style.top = "-100vh";
-      document.querySelector(".dalsiat-text").style.top = "-100%";
       document.querySelector(".weband-text").style.top = "50%";
       document.querySelector(".wrapper").style.top = "0vh";
       document.querySelector(".cursor").style.display = "none";
@@ -746,10 +789,26 @@ if (screen.width < 1024) {
       // controlsLive = false;
       // console.log("clicked");
 
-      document.querySelector(".buybest-text").style.top = "-100vh";
-      document.querySelector(".cashExp-text").style.top = "-100vh";
-      document.querySelector(".dalsiat-text").style.top = "-100%";
       document.querySelector(".tehnad-text").style.top = "50%";
+      document.querySelector(".wrapper").style.top = "0vh";
+      document.querySelector(".cursor").style.display = "none";
+      // if (document.exitFullscreen) {
+      //   document.exitFullscreen();
+      // } else if (document.webkitExitFullscreen) {
+      //   document.webkitExitFullscreen();
+      // }
+      menuClosed = false;
+      controlsLive = false;
+    }
+  };
+  var buybestMousedown = function (e) {
+    if (menuClosed) {
+      e.preventDefault();
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      document.querySelector(".buybest-text").style.top = "50%";
       document.querySelector(".wrapper").style.top = "0vh";
       document.querySelector(".cursor").style.display = "none";
       // if (document.exitFullscreen) {
@@ -771,10 +830,6 @@ if (screen.width < 1024) {
       instructions.style.display = "none";
       // controlsLive = false;
       // console.log("clicked");
-
-      document.querySelector(".buybest-text").style.top = "-100vh";
-      document.querySelector(".cashExp-text").style.top = "-100vh";
-      document.querySelector(".tehnad-text").style.top = "-100vh";
       document.querySelector(".nanny-text").style.top = "50%";
       document.querySelector(".wrapper").style.top = "0vh";
       document.querySelector(".cursor").style.display = "none";
@@ -799,7 +854,7 @@ if (screen.width < 1024) {
   //   controls.enabled = true;
   //   mousedown = false;
   // });
-  var onMouseDown5 = function (e) {
+  var retapMousedown = function (e) {
     if (menuClosed) {
       mousedown = true;
       document.exitPointerLock();
@@ -809,7 +864,127 @@ if (screen.width < 1024) {
 
       // console.log("fire");
       // window.open("https://www.weband.bg/");
-      document.querySelector(".gotoweb").style.top = "50%";
+      document.querySelector(".gotowebRetap").style.top = "50%";
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var ideasLabMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebIdeas").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webWebandMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebWeband").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webTehnadMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebTehnad").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webSofunMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebSofun").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webBuybestMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebBuybest").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webBrainAcademyMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebBrainAcademy").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webDalsiatMouseDown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebDalsiat").style.top = "50%";
+
+      document.querySelector(".cursor").style.display = "none";
+    }
+  };
+  var webBestnannyMousedown = function (e) {
+    if (menuClosed) {
+      mousedown = true;
+      document.exitPointerLock();
+      controls.enabled = false;
+      instructions.style.display = "none";
+      e.preventDefault();
+
+      // console.log("fire");
+      // window.open("https://www.weband.bg/");
+      document.querySelector(".gotowebBestNanny").style.top = "50%";
+
       document.querySelector(".cursor").style.display = "none";
     }
   };
@@ -905,7 +1080,7 @@ if (screen.width < 1024) {
   var soundOn = function (e) {
     if (menuClosed) {
       e.preventDefault();
-      console.log("sound off");
+      // console.log("sound off");
       soundPlaying = false;
       mute = true;
       hitSound.pause();
@@ -916,7 +1091,7 @@ if (screen.width < 1024) {
   var soundOff = function (e) {
     if (menuClosed) {
       e.preventDefault();
-      console.log("sound play");
+      // console.log("sound play");
       soundPlaying = true;
       mute = false;
       hitSound.play();
@@ -933,8 +1108,18 @@ if (screen.width < 1024) {
     controlsLive = true;
     onGift = false;
     document.querySelector(".cursor").style.display = "block";
-    document.querySelector(".gotoweb").style.top = "-100vh";
+    document.querySelector(".gotowebRetap").style.top = "-100vh";
+    document.querySelector(".gotowebIdeas").style.top = "-100vh";
+    document.querySelector(".gotowebWeband").style.top = "-100vh";
+    document.querySelector(".gotowebBuybest").style.top = "-100vh";
+    document.querySelector(".gotowebDalsiat").style.top = "-100vh";
+    document.querySelector(".gotowebSofun").style.top = "-100vh";
+    document.querySelector(".gotowebTehnad").style.top = "-100vh";
+    document.querySelector(".gotowebBrainAcademy").style.top = "-100vh";
+    document.querySelector(".gotowebBestNanny").style.top = "-100vh";
     document.querySelector(".weband-text").style.top = "-100vh";
+    document.querySelector(".dalsiat-text").style.top = "-100vh";
+    document.querySelector(".buybest-text").style.top = "-100vh";
     document.querySelector(".tehnad-text").style.top = "-100vh";
     document.querySelector(".nanny-text").style.top = "-100vh";
     document.querySelector(".wrapper").style.top = "-100vh";
@@ -948,9 +1133,9 @@ if (screen.width < 1024) {
         canvas.webkitRequestFullscreen();
       }
     }
-    console.log("closed");
-    console.log(controls);
-    console.log(controlsLive);
+    // console.log("closed");
+    // console.log(controls);
+    // console.log(controlsLive);
     // }
   };
   let elementsArr = document.querySelectorAll(".close");
@@ -967,8 +1152,18 @@ if (screen.width < 1024) {
     controls.lock();
     controlsLive = true;
     document.querySelector(".cursor").style.display = "block";
-    document.querySelector(".gotoweb").style.top = "-100vh";
+    document.querySelector(".gotowebRetap").style.top = "-100vh";
+    document.querySelector(".gotowebIdeas").style.top = "-100vh";
+    document.querySelector(".gotowebWeband").style.top = "-100vh";
+    document.querySelector(".gotowebBuybest").style.top = "-100vh";
+    document.querySelector(".gotowebDalsiat").style.top = "-100vh";
+    document.querySelector(".gotowebSofun").style.top = "-100vh";
+    document.querySelector(".gotowebTehnad").style.top = "-100vh";
+    document.querySelector(".gotowebBrainAcademy").style.top = "-100vh";
+    document.querySelector(".gotowebBestNanny").style.top = "-100vh";
     document.querySelector(".weband-text").style.top = "-100vh";
+    document.querySelector(".dalsiat-text").style.top = "-100vh";
+    document.querySelector(".buybest-text").style.top = "-100vh";
     document.querySelector(".tehnad-text").style.top = "-100vh";
     document.querySelector(".nanny-text").style.top = "-100vh";
     document.querySelector(".found-text").style.top = "-100vh";
@@ -1065,7 +1260,7 @@ if (screen.width < 1024) {
         minString = "0" + minString;
       }
       document.querySelector(".time-sec").innerHTML = seconds;
-      document.querySelector(".player-time").style.width = "320px";
+      document.querySelector(".player-time").style.width = "350px";
       document.querySelector(".time-min").innerHTML = minString;
       document.querySelector(".time-mil").innerHTML = miliseconds;
     }
@@ -1122,11 +1317,18 @@ if (screen.width < 1024) {
     // outlineMesh6.visible = false;
     outlineMesh7.visible = false;
     outlineMesh8.visible = false;
-    outlineMesh9.visible = false;
+    // outlineMesh9.visible = false;
     outlineMesh10.visible = false;
     outlineMesh11.visible = false;
     outlineMeshNanny.visible = false;
     outlineMeshDS.visible = false;
+    wall3mesh.visible = false;
+    wall4mesh.visible = false;
+    wall5mesh.visible = false;
+    wall6mesh.visible = false;
+    wall7mesh.visible = false;
+    wall8mesh.visible = false;
+    wall9mesh.visible = false;
 
     if (!decor1found) decor1.rotation.y += 0.01;
     if (!decor2found) decor2.rotation.y += 0.01;
@@ -1138,76 +1340,94 @@ if (screen.width < 1024) {
     dsspin.rotation.y += 0.01;
     bbspin.rotation.y += 0.01;
     thspin.rotation.y += 0.01;
-    window.removeEventListener("mousedown", onMouseDown);
-    window.removeEventListener("mousedown", onMouseDown2);
+    wespin.rotation.y += 0.01;
+    naspin.rotation.y += 0.01;
     window.removeEventListener("mousedown", onMouseDown3);
-    window.removeEventListener("mousedown", onMouseDown4);
-    window.removeEventListener("mousedown", onMouseDown5);
+    window.removeEventListener("mousedown", webandMouseDown);
     window.removeEventListener("mousedown", onMouseDown6);
     window.removeEventListener("mousedown", onMouseDown7);
     window.removeEventListener("mousedown", onMouseDown8);
     window.removeEventListener("mousedown", onMouseDown9);
     window.removeEventListener("mousedown", onMouseDown10);
     window.removeEventListener("mousedown", tehnadMouseDown);
+    window.removeEventListener("mousedown", buybestMousedown);
     window.removeEventListener("mousedown", nannyMouseDown);
+    window.removeEventListener("mousedown", retapMousedown);
+    window.removeEventListener("mousedown", ideasLabMousedown);
+    window.removeEventListener("mousedown", webTehnadMousedown);
+    window.removeEventListener("mousedown", webBrainAcademyMousedown);
+    window.removeEventListener("mousedown", webBuybestMousedown);
+    window.removeEventListener("mousedown", webDalsiatMouseDown);
+    window.removeEventListener("mousedown", webBestnannyMousedown);
+    window.removeEventListener("mousedown", webSofunMousedown);
+    window.removeEventListener("mousedown", webWebandMousedown);
     window.removeEventListener("mousedown", soundOn);
     window.removeEventListener("mousedown", soundOff);
     const intersects = raycaster.intersectObjects(gifts);
     // if (collideWall) {
     for (let i = 0; i < intersects.length; i++) {
       if (intersects[i].distance < 5) {
-        if (intersects[i].object.name === "CashExpGift") {
-          outlineMesh3.visible = true;
-          onGift = true;
-          window.addEventListener("mousedown", onMouseDown, false);
-        } else if (intersects[i].object.name === "giftInteract") {
-          outlineMesh2.visible = true;
-          onGift = true;
-          window.addEventListener("mousedown", onMouseDown2, false);
-        } else if (intersects[i].object.name === "dalsiatGift") {
-          outlineMesh4.visible = true;
-          onGift = true;
-          window.addEventListener("mousedown", onMouseDown3, false);
-        } else if (intersects[i].object.name === "weband-gift") {
+        if (intersects[i].object.name === "weband-gift") {
           outlineMesh5.visible = true;
           // console.log("hello");
-
           onGift = true;
-          // window.addEventListener("mousedown", onMouseDown4, false);
+          window.addEventListener("mousedown", webandMouseDown, false);
         } else if (intersects[i].object.name === "buybest-present") {
           outlineMesh10.visible = true;
           // console.log("hello");
-
           onGift = true;
-          window.addEventListener("mousedown", onMouseDown4, false);
+          window.addEventListener("mousedown", buybestMousedown, false);
         } else if (intersects[i].object.name === "tehnad-present") {
           outlineMesh11.visible = true;
           // console.log("hello");
 
           onGift = true;
           window.addEventListener("mousedown", tehnadMouseDown, false);
-        } else if (intersects[i].object.name === "nanny-present") {
+        } else if (intersects[i].object.name === "brainacademy-present") {
           outlineMeshNanny.visible = true;
-          // console.log("hello");
-
           onGift = true;
           window.addEventListener("mousedown", nannyMouseDown, false);
         } else if (intersects[i].object.name === "dalsiat-present") {
           outlineMeshDS.visible = true;
           // console.log("hello");
-
           onGift = true;
-          window.addEventListener("mousedown", tehnadMouseDown, false);
+          window.addEventListener("mousedown", onMouseDown3, false);
         } else if (intersects[i].object.name === "wall1") {
           outlineMesh7.visible = true;
           onGift = true;
+          window.addEventListener("mousedown", ideasLabMousedown, false);
         } else if (intersects[i].object.name === "wall2") {
           outlineMesh8.visible = true;
           onGift = true;
+          window.addEventListener("mousedown", retapMousedown, false);
         } else if (intersects[i].object.name === "wall3") {
-          outlineMesh9.visible = true;
+          wall3mesh.visible = true;
           onGift = true;
-          window.addEventListener("mousedown", onMouseDown5, false);
+          window.addEventListener("mousedown", webBestnannyMousedown, false);
+        } else if (intersects[i].object.name === "wall4") {
+          wall4mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webTehnadMousedown, false);
+        } else if (intersects[i].object.name === "wall5") {
+          wall5mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webBuybestMousedown, false);
+        } else if (intersects[i].object.name === "wall6") {
+          wall6mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webDalsiatMouseDown, false);
+        } else if (intersects[i].object.name === "wall7") {
+          wall7mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webSofunMousedown, false);
+        } else if (intersects[i].object.name === "wall8") {
+          wall8mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webBrainAcademyMousedown, false);
+        } else if (intersects[i].object.name === "wall9") {
+          wall9mesh.visible = true;
+          onGift = true;
+          window.addEventListener("mousedown", webWebandMousedown, false);
         } else if (intersects[i].object.name === "decor1") {
           if (!decor1found) {
             // console.log("found gift");
@@ -1261,7 +1481,7 @@ if (screen.width < 1024) {
       }
     }
     for (let i = 0; i < intersects.length; i++) {
-      if (intersects[i].distance < 1) {
+      if (intersects[i].distance < 2) {
         if (intersects[i].object.name === "decor1") {
           onGift = true;
           if (menuClosed) {
@@ -1660,13 +1880,13 @@ if (screen.width < 1024) {
     world.addBody(WallRightBody3);
     // wall 5
     const wall5 = new THREE.Mesh(
-      new THREE.BoxBufferGeometry(0.1, 20, 6),
+      new THREE.BoxBufferGeometry(0.1, 20, 4),
       phongMaterial
     );
-    wall5.position.set(-4.5, 1, 10);
+    wall5.position.set(-4.5, 1, 9.5);
     // scene.add(wall5);
 
-    const WallShape5 = new CANNON.Box(new CANNON.Vec3(0.1, 10, 3));
+    const WallShape5 = new CANNON.Box(new CANNON.Vec3(0.1, 10, 2));
     const WallRightBody5 = new CANNON.Body({ mass: 0 });
     WallRightBody5.addShape(WallShape5, new CANNON.Vec3());
     WallRightBody5.position.x = wall5.position.x;
@@ -2180,6 +2400,7 @@ if (screen.width < 1024) {
     }
 
     window.addEventListener("click", (event) => {
+      // console.log("click");
       if (!controls.enabled || onGift) {
         return;
       }

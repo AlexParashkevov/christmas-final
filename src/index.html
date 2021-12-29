@@ -7,6 +7,8 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
+    <meta property="og:image" content="./assets/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,6 +20,20 @@
       type="image/jpg"
       href="/src/assets/favicon-32x32.png "
     />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CBT0QHDE8B"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CBT0QHDE8B");
+    </script>
   </head>
   <body>
     <div class="loaderbg">
@@ -43,28 +59,37 @@
       .mobile {
         display: none;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         position: absolute;
+        overflow-x: hidden;
         width: 100vw;
-        height: 100vh;
+        height: 120%;
         top: 50%;
         left: 50%;
-        background: url("assets/christmas-bg-mobile.png");
+        background: url("assets/mobile-bg.png");
         background-size: cover;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         color: #f0cd83;
         text-align: left;
       }
+      .treeimg img {
+        display: block;
+      }
+      .treeimg {
+        position: absolute;
+        right: -59vw;
+        z-index: -1;
+        top: 20%;
+        width: 100%;
+      }
       .mobile h2 {
         font-family: "Orelega One", cursive;
-        text-shadow: 4px 6px 20px #00000054;
-        letter-spacing: 2px;
         font-weight: 100;
         font-size: 5vh;
         margin: initial;
-        margin: 0px 70px 30px 20px;
+        margin: 100px 70px 30px 20px;
       }
       .mobile p {
         font-size: 3vh;
@@ -86,6 +111,7 @@
         transition: transform 0.5s;
       }
       .close {
+        display: none;
         z-index: 1;
         position: absolute;
         right: 35px;
@@ -142,6 +168,9 @@
         opacity: 0.4;
         font-weight: bold;
       }
+      .btn {
+        display: none;
+      }
       html,
       body {
         background-color: black;
@@ -151,12 +180,20 @@
       }
     </style>
     <div class="mobile">
-      <h2>Здравей, явно успешно си сканирал QR кода!</h2>
+      <div class="treeimg">
+        <img src="/src/assets/christmas-bg-mobile.svg" alt="" />
+      </div>
+      <h2>Здравей, явно коледната ни кампания успешно е достигнала до теб!</h2>
       <p>
-        Подготвили сме 3D коледна игра, но за съжаление не стигна времето да я
-        направим, работеща за мобилна версия :(
+        Постарахме се да направим нещо яко за коледните празници, като
+        използваме 3D технологии, за да ти представим коледа по иновативен
+        начин. Приканваме те да разгледаш играта от компютър при първа
+        възможност.
       </p>
-      <p>Посети merrychristmas.bg от компютър още днес!</p>
+      <p>
+        Посети merrychristmas.bg <br />
+        от компютър още днес!
+      </p>
     </div>
     <div class="legend">
       <div id="instructions">
@@ -227,57 +264,75 @@
         <h2 class="time-mil">00</h2>
       </div>
       <div class="buybest-text">
-        <h2>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt
-          accusamus similique libero dolorem quo modi.
-        </h2>
-      </div>
-      <div class="cashExp-text">
-        <h2>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt
-          accusamus similique libero dolorem quo modi.
-        </h2>
+        <div class="gift-text-wrapper">
+          <div class="img-wrapper">
+            <img class="buybestlogo" src="./assets/buybesttr.png" alt="" />
+            <button class="close">X</button>
+          </div>
+          <h2>Пожелание от “BuyBest”</h2>
+          <p>
+            Най-големият подарък за Коледа може да се вмести в най-малката
+            кутия. Пожелаваме ти точно такъв подарък и нека ти носи само
+            положителни емоции ! Нека тези коледни празници положат началото на
+            една година, в която здравето, щастието и успеха са Ваши постоянни
+            спътници, а радостта от тях – безкрайна. Весела Коледа от екипа на
+            BuyBest!
+          </p>
+          <a class="btn" href="https://www.buybest.bg/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
       </div>
       <div class="dalsiat-text">
-        <h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-          perspiciatis sint, earum dolorum tempore ducimus alias eum quidem
-          ullam quasi! Molestiae doloribus consequuntur sapiente beatae officia
-          distinctio dignissimos. Itaque amet, alias voluptate assumenda minima
-          eaque eveniet praesentium maxime natus maiores illo. Et iste
-          asperiores ea maiores, enim illo vitae commodi porro deserunt. Iste
-          qui at modi, ab iusto pariatur ipsum repudiandae libero rerum animi
-          repellat eum praesentium. Provident animi officiis mollitia! Earum eos
-          doloribus et consequuntur enim necessitatibus numquam minus fugiat
-          dolores quibusdam, adipisci, architecto deserunt saepe, a similique
-          provident eius? Accusamus recusandae consequatur enim perferendis
-          quisquam unde, nulla id.
-        </h2>
+        <div class="gift-text-wrapper">
+          <div class="img-wrapper">
+            <img class="dalsiatlogo" src="./assets/dal-siat-logo.svg" alt="" />
+            <button class="close">X</button>
+          </div>
+          <h2>Пожелание от "Дал Сиат"</h2>
+          <p>
+            Уважаеми Приятели, <br />
+            Колективът на Дал Сиат Ви поздравява с настъпващите Коледни и
+            Новогодишни празници. <br />Благодарим Ви, че ни се доверихте и
+            бяхте до нас през изминалата година. <br />
+            Нека Светлите празници донесат на Вас и Вашите близки топлина,
+            здраве и незабравими мигове. Пожелаваме Ви предстоящата 2022 година
+            да бъде изпълнена с нови възможности и предизвикателства, успехи,
+            вдъхновение и просперитет. <br />
+            Весела Коледа и щастлива Нова Година!
+          </p>
+          <a class="btn" href="https://dalsiat.com/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
       </div>
       <div class="wrapper"></div>
 
       <div class="weband-text">
-        <div class="img-wrapper">
-          <img src="./assets/stockphoto.png" alt="" />
-          <button class="close">X</button>
-        </div>
         <div class="gift-text-wrapper">
-          <h2>Пожелание от “клиент Х”</h2>
+          <div class="img-wrapper">
+            <img class="weband3dlogo" src="./assets/webandonly.svg" alt="" />
+            <button class="close">X</button>
+          </div>
+          <h2>Пожелание от “Weband”</h2>
           <p>
-            Тук имате възможност да предоставите персонализирано пожелание под
-            формата на текст, снимки или промоционално предложение, промо код
-            или друго, което всеки посетител ще може да прочете! <br />
-            Оставяме на Вас възможността да бъдете креативни и полезни! <br />
-            Възможност за линк с препратка към вашия фирмен сайт
+            Годината е само времето, за което земята прави обиколка около
+            слънцето. А колко важни моменти ще откриете в нея, зависи единствено
+            от Вас! Приятели, по случай коледните и новогодишните празници,
+            екипът на Weband Ви пожелава да бъдете още по-здрави и още
+            по-щастливи! Нека 2022г. бъде повод за хубави емоции, постигнати
+            цели и лично удовлетворение!
           </p>
-          <a class="btn" href="https://example.com/" target="_blank">Сайт</a>
+          <a class="btn" href="https://weband.bg/" target="_blank">Към сайта</a>
         </div>
       </div>
       <div class="tehnad-text">
-        <button class="close">X</button>
-
         <div class="gift-text-wrapper">
-          <h2>Пожелание от “Технад ООД”</h2>
+          <div class="img-wrapper">
+            <img class="tehnadlogo" src="./assets/tehnad.svg" alt="" />
+            <button class="close">X</button>
+          </div>
+          <h2>Пожелание от “Технад”</h2>
           <p>
             Уважаеми Клиенти, скъпи Приятели. Парите могат да купят книги, но не
             и мъдрост. Парите могат да купят лекарства, но не и здраве. Парите
@@ -288,50 +343,141 @@
             да печелите пари, и да Ви остане повече време да сте мъдри, здрави,
             уважавани и обичани.
           </p>
-          <a class="btn" href="https://tehnad.com/" target="_blank">Сайт</a>
+          <a class="btn" href="https://tehnad.com/" target="_blank"
+            >Към сайта</a
+          >
         </div>
       </div>
       <div class="nanny-text">
-        <button class="close">X</button>
-
         <div class="gift-text-wrapper">
-          <h2>
-            Екипът на BRAIN Academy и Best Nanny Ви пожелава весели празници,
-            изпълнени с хубави емоции и любов! Не спирайте да се развивате! А на
-            всички, които са горди родители, подаряваме:
-          </h2>
+          <div class="img-wrapper">
+            <img class="brainad" src="./assets/brainad.svg" alt="" />
+            <button class="close">X</button>
+          </div>
+          <h2>Екипът на BRAIN Academy и Best Nanny Ви пожелава</h2>
           <p>
-            1. Отстъпка в размер на 10% за (модул) занималня в BRAIN Academy (за
-            един месец) <br />
-            2. Отстъпка в размер на 5% за (модул) занималня в BRAIN Academy (за
-            три поредни месеца) <br />
-            3. Безплатен урок за курс по избор -
+            Весели празници, изпълнени с хубави емоции и любов! Не спирайте да
+            се развивате! А на всички, които са горди родители, на деца от 2 до
+            14 години, подаряваме:
+          </p>
+          <p>
+            1. Отстъпка в размер на 10% за (модул) занималня в
+            <a href="https://brainacademy.bg/" target="_blank">BRAIN Academy</a>
+            (за един месец) <br />
+            2. Отстъпка в размер на 5% за (модул) занималня в
+            <a href="https://brainacademy.bg/" target="_blank">BRAIN Academy</a>
+            (за три поредни месеца) <br />
+            3.
             <a href="https://brainacademy.bg/courses-for-kids/" target="_blank"
-              >https://brainacademy.bg/courses-for-kids/</a
-            >
+              >Безплатен урок за курс по избор
+            </a>
             (може да се използва до 28.02.2022г)
           </p>
-          <a class="btn" href="https://bestnanny.eu/" target="_blank">Сайт</a>
+          <a class="btn" href="https://brainacademy.bg/" target="_blank"
+            >Към сайта</a
+          >
         </div>
       </div>
       <div class="found-text">
-        <div class="gift-text-wrapper2">
+        <div class="gift-text-wrapper">
           <button class="close">X</button>
-
           <h2>Поздравления!</h2>
           <p>
-            Снимай екрана си, заедно с резултата и го качи на стори. Тагни
-            @weband.bg и ние ще сложим името ти на къщата.
+            Снимай екрана си, заедно с резултата и го качи на стори в Инстаграм.
+            Тагни @weband.bg и ние ще сложим името ти на къщата.
           </p>
         </div>
       </div>
-      <div class="gotoweb">
+      <div class="gotowebRetap">
         <button class="close">X</button>
         <div class="gotoweb-wrapper">
-          <img src="./assets/yourlogo.png" alt="" />
+          <img src="./assets/retaptexture.png" alt="" />
           <h2>Сигурни ли сте, че искате да отворите линка?</h2>
-          <a class="continue" href="www.example.com" target="_blank"
-            >Продължи</a
+          <a class="continue" href="https://www.waterflix.eu/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebIdeas">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/ideaslabtext.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a
+            class="continue"
+            href="https://ideas-lab.eu/bg/%d0%bf%d1%80%d0%be%d0%b4%d1%83%d0%ba%d1%82%d0%b8/"
+            target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebTehnad">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/tehnad.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://tehnad.com/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebBuybest">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/buybest.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://www.buybest.bg/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebDalsiat">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/dalsiat.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://dalsiat.com/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebSofun">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/sofun.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://sofun.bg/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebBrainAcademy">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/brain.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://brainacademy.bg/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebWeband">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/weblogo.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://weband.bg/" target="_blank"
+            >Към сайта</a
+          >
+        </div>
+      </div>
+      <div class="gotowebBestNanny">
+        <button class="close">X</button>
+        <div class="gotoweb-wrapper">
+          <img src="./assets/bestnanny.png" alt="" />
+          <h2>Сигурни ли сте, че искате да отворите линка?</h2>
+          <a class="continue" href="https://bestnanny.eu/" target="_blank"
+            >Към сайта</a
           >
         </div>
       </div>
