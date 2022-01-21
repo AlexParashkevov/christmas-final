@@ -273,7 +273,7 @@ if (screen.width < 1024) {
   // Load a glTF resource
   loader.load(
     // resource URL
-    "./assets/testChristmas6.glb",
+    "./assets/testChristmas10.glb",
     // called when the resource is loaded
     function (gltf) {
       // scene.add(gltf.scene);
